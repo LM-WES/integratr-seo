@@ -1,0 +1,2286 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO Strategie — IntegratR.tech · April 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&family=Roboto:wght@400;500;600;700&family=Roboto+Slab:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green:      #4CD9D2;
+    --green-dark: #2da5a0;
+    --navy:       #000A2D;
+    --navy-mid:   #13228E;
+    --blue:       #1F40BF;
+    --blue-lt:    #F2F4FF;
+    --urgent:     #000A2D;
+    --high:       #13228E;
+    --medium:     #1F40BF;
+    --orange:     #13228E;
+    --red:        #000A2D;
+    --yellow:     #1F40BF;
+    --grey-lt:    #f4f6f9;
+    --grey:       #e2e8f0;
+    --grey-mid:   #94a3b8;
+    --text:       #0d1230;
+    --text-lt:    #5a6a8a;
+    --white:      #ffffff;
+    --radius:     10px;
+    --shadow:     0 2px 12px rgba(0,10,45,.07);
+    --shadow-lg:  0 8px 32px rgba(0,10,45,.13);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Rubik', 'Roboto', system-ui, -apple-system, sans-serif;
+    background: #F2F4FF;
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, var(--blue) 100%);
+    color: white;
+    padding: 80px 60px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(76,217,210,.18) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(31,64,191,.35) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .cover-label {
+    display: inline-block;
+    background: var(--green);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+  .cover h1 {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    position: relative; z-index: 1;
+  }
+  .cover h1 span { color: var(--green); }
+  .cover .subtitle {
+    font-size: 17px;
+    color: rgba(255,255,255,.7);
+    margin-bottom: 40px;
+    position: relative; z-index: 1;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    position: relative; z-index: 1;
+  }
+  .cover-meta-item { display: flex; flex-direction: column; }
+  .cover-meta-item .label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,.5);
+    margin-bottom: 2px;
+  }
+  .cover-meta-item .value {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+  }
+  .cover-pills {
+    margin-top: 36px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    position: relative; z-index: 1;
+  }
+  .cover-pill {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.2);
+    color: rgba(255,255,255,.9);
+    font-size: 12px;
+    padding: 5px 14px;
+    border-radius: 20px;
+  }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+  .page-body { padding: 40px 0 80px; }
+
+  /* ── NAV / TOC ── */
+  .toc {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 28px 32px;
+    margin: 32px 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .toc-title {
+    grid-column: 1/-1;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--grey-mid);
+    margin-bottom: 8px;
+  }
+  .toc-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: var(--grey-lt);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 500;
+    transition: background .15s;
+  }
+  .toc-item:hover { background: var(--blue-lt); color: var(--blue); }
+  .toc-num {
+    background: var(--navy);
+    color: white;
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* ── SECTIONS ── */
+  .section { margin-bottom: 40px; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--grey);
+  }
+  .section-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .icon-blue   { background: var(--blue-lt); }
+  .icon-green  { background: #e0f8f7; }
+  .icon-orange { background: #eef0ff; }
+  .icon-purple { background: #eef0ff; }
+  .icon-red    { background: var(--blue-lt); }
+  .icon-yellow { background: #e0f8f7; }
+  .section-icon svg { width: 20px; height: 20px; stroke: var(--navy-mid); }
+
+  .section-header h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+  .section-header .section-desc {
+    font-size: 13px;
+    color: var(--text-lt);
+    margin-top: 2px;
+  }
+  .section-tag {
+    margin-left: auto;
+    background: var(--blue-lt);
+    color: var(--blue);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px 28px;
+    margin-bottom: 16px;
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .card-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+  /* ── SUMMARY BOX ── */
+  .summary-box {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    color: white;
+    border-radius: var(--radius);
+    padding: 32px 36px;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .summary-box::after {
+    content: '';
+    position: absolute;
+    right: -40px; top: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(76,217,210,.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .summary-box h3 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--green);
+    margin-bottom: 10px;
+  }
+  .summary-box p {
+    font-size: 16px;
+    line-height: 1.65;
+    color: rgba(255,255,255,.88);
+    position: relative; z-index: 1;
+  }
+  .summary-box strong { color: white; }
+
+  /* ── TABLES ── */
+  .tbl-wrap {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .tbl-header {
+    padding: 14px 20px;
+    background: var(--navy);
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  thead th {
+    background: var(--grey-lt);
+    color: var(--text-lt);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--grey);
+  }
+  tbody tr { border-bottom: 1px solid var(--grey); }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: var(--grey-lt); }
+  tbody td { padding: 11px 16px; vertical-align: middle; }
+  .td-kw { font-weight: 600; color: var(--navy); }
+  .td-kw-highlight { font-weight: 700; color: var(--blue); }
+
+  /* ── BADGES ── */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .badge-low    { background: #e0f8f7; color: var(--green-dark); }
+  .badge-medium { background: #eef0ff; color: var(--navy-mid); }
+  .badge-high   { background: var(--navy); color: white; }
+  .badge-blue   { background: var(--blue-lt); color: var(--blue); }
+  .badge-navy   { background: var(--navy); color: white; }
+  .badge-green  { background: #e0f8f7; color: var(--green-dark); }
+  .badge-orange { background: #eef0ff; color: var(--navy-mid); }
+
+  .stars { color: var(--navy-mid); font-size: 13px; }
+
+  /* ── PRIORITY ROWS ── */
+  .p-now   td:first-child { border-left: 4px solid var(--red); }
+  .p-high  td:first-child { border-left: 4px solid var(--orange); }
+  .p-med   td:first-child { border-left: 4px solid var(--yellow); }
+  .p-low   td:first-child { border-left: 4px solid var(--green); }
+
+  /* ── COMPETITOR CARDS ── */
+  .comp-card {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 22px 26px;
+    margin-bottom: 14px;
+    border-left: 5px solid var(--grey);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+  }
+  .comp-card.threat-high   { border-left-color: var(--red); }
+  .comp-card.threat-medium { border-left-color: var(--orange); }
+  .comp-card.threat-low    { border-left-color: var(--green); }
+  .comp-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .comp-domain { font-size: 12px; color: var(--text-lt); margin-bottom: 10px; }
+  .comp-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 12px; }
+  .comp-meta-item { display: flex; flex-direction: column; }
+  .comp-meta-item .lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--grey-mid); }
+  .comp-meta-item .val { font-size: 15px; font-weight: 700; color: var(--navy); }
+  .comp-gap {
+    background: var(--grey-lt);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: var(--text-lt);
+    margin-bottom: 8px;
+  }
+  .comp-gap strong { color: var(--text); }
+  .comp-angle {
+    background: #e0f8f7;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #2da5a0;
+  }
+  .comp-angle strong { color: #2da5a0; }
+  .comp-threat-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+    min-width: 80px;
+    gap: 4px;
+  }
+  .threat-badge-high   { background: var(--navy); color: white; }
+  .threat-badge-medium { background: var(--navy-mid); color: white; }
+  .threat-badge-low    { background: #e0f8f7; color: var(--green-dark); }
+
+  /* ── SERP BOXES ── */
+  .serp-box {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .serp-header {
+    background: var(--grey-lt);
+    padding: 12px 18px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    border-bottom: 1px solid var(--grey);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .serp-kw {
+    font-family: monospace;
+    background: var(--navy);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+  }
+  .serp-row {
+    display: flex;
+    align-items: center;
+    padding: 10px 18px;
+    border-bottom: 1px solid var(--grey);
+    gap: 12px;
+    font-size: 13px;
+  }
+  .serp-row:last-child { border-bottom: none; }
+  .serp-pos {
+    width: 28px; height: 28px;
+    background: var(--grey-lt);
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-lt);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .serp-pos.p1 { background: var(--green); color: white; }
+  .serp-pos.p2 { background: #e0f8f7; color: var(--green-dark); }
+  .serp-pos.p3 { background: #e0f8f7; color: var(--green-dark); }
+  .serp-domain { font-weight: 600; color: var(--navy); min-width: 180px; }
+  .serp-title  { color: var(--text-lt); flex: 1; }
+  .serp-type { margin-left: auto; }
+  .serp-gap-tag {
+    background: linear-gradient(90deg, var(--green), var(--green-dark));
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: .5px;
+  }
+
+  /* ── BACKLINK BLOCKS ── */
+  .bl-tier {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .bl-tier-header {
+    padding: 14px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--grey);
+  }
+  .bl-t1 .bl-tier-header { background: var(--navy); color: white; }
+  .bl-t2 .bl-tier-header { background: var(--navy-mid); color: white; }
+  .bl-t3 .bl-tier-header { background: var(--blue-lt); color: var(--blue); }
+  .bl-row {
+    display: grid;
+    grid-template-columns: 200px 1fr auto;
+    align-items: start;
+    gap: 14px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--grey);
+    font-size: 13px;
+  }
+  .bl-row:last-child { border-bottom: none; }
+  .bl-target { font-weight: 700; color: var(--navy); }
+  .bl-domain { font-size: 11px; color: var(--text-lt); }
+  .bl-why { color: var(--text-lt); }
+  .bl-effort {
+    white-space: nowrap;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--grey-lt);
+    color: var(--text-lt);
+  }
+
+  /* ── WEEK PLAN ── */
+  .weekplan {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .week-row {
+    display: grid;
+    grid-template-columns: 90px 1fr 130px 100px;
+    align-items: center;
+    gap: 14px;
+    padding: 13px 20px;
+    border-bottom: 1px solid var(--grey);
+    font-size: 13px;
+  }
+  .week-row:last-child { border-bottom: none; }
+  .week-label {
+    font-weight: 700;
+    font-size: 12px;
+    color: white;
+    background: var(--navy);
+    padding: 4px 10px;
+    border-radius: 6px;
+    text-align: center;
+  }
+  .week-label.w1  { background: var(--red); }
+  .week-label.w2  { background: var(--orange); }
+  .week-label.w3  { background: #1F40BF; }
+  .week-label.w4  { background: #1F40BF; }
+  .week-label.w68 { background: var(--green-dark); }
+  .week-action { color: var(--text); }
+  .week-links { font-weight: 700; color: var(--navy); font-size: 13px; }
+  .week-effort { color: var(--text-lt); font-size: 12px; }
+
+  /* ── AI OVERVIEW GRID ── */
+  .aio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .aio-card {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 18px 20px;
+    border-top: 3px solid var(--grey);
+  }
+  .aio-card.has-aio  { border-top-color: var(--blue); }
+  .aio-card.no-aio   { border-top-color: var(--green); }
+  .aio-kw { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .aio-status { font-size: 12px; margin-bottom: 8px; }
+  .aio-opp { font-size: 12px; color: var(--text-lt); }
+  .aio-opp strong { color: var(--green-dark); }
+
+  /* ── CONCLUSION ── */
+  .conclusion {
+    background: linear-gradient(135deg, var(--navy) 0%, #13228E 100%);
+    border-radius: var(--radius);
+    padding: 40px 44px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .conclusion::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(76,217,210,.13) 0%, transparent 65%);
+    border-radius: 50%;
+  }
+  .conclusion h2 {
+    font-size: 26px;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 6px;
+  }
+  .conclusion .sub {
+    color: rgba(255,255,255,.6);
+    font-size: 14px;
+    margin-bottom: 28px;
+  }
+  .conclusion-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 28px; position: relative; z-index: 1; }
+  .csf-card {
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 10px;
+    padding: 18px;
+  }
+  .csf-num {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--green);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .csf-title { font-size: 13px; font-weight: 700; color: white; margin-bottom: 8px; }
+  .csf-text  { font-size: 12px; color: rgba(255,255,255,.65); line-height: 1.55; }
+
+  .timeline-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 28px; position: relative; z-index: 1; }
+  .timeline-item {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .timeline-period { font-size: 12px; font-weight: 700; color: var(--green); margin-bottom: 6px; }
+  .timeline-text   { font-size: 12px; color: rgba(255,255,255,.7); line-height: 1.5; }
+
+  .final-message {
+    background: rgba(76,217,210,.13);
+    border: 1px solid rgba(76,217,210,.35);
+    border-radius: 10px;
+    padding: 20px 24px;
+    font-size: 15px;
+    color: white;
+    line-height: 1.65;
+    position: relative; z-index: 1;
+  }
+  .final-message strong { color: var(--green); }
+
+  /* ── INSIGHT BOXES ── */
+  .insight {
+    background: var(--blue-lt);
+    border-left: 4px solid var(--blue);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--navy);
+    margin: 12px 0;
+  }
+  .insight strong { color: var(--navy); }
+  .insight-green {
+    background: #f0fdfc;
+    border-left-color: var(--green);
+    color: #1a6b68;
+  }
+  .insight-blue {
+    background: var(--blue-lt);
+    border-left-color: var(--blue);
+    color: #1e3a5f;
+  }
+  .insight-red {
+    background: var(--blue-lt);
+    border-left: 4px solid var(--navy);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--navy);
+    margin: 12px 0;
+  }
+  .insight-red strong { color: var(--navy); }
+
+  /* ── STAT BOXES ── */
+  .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
+  .stat-box {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px;
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-num.green { color: var(--green-dark); }
+  .stat-num.orange { color: var(--orange); }
+  .stat-num.blue { color: var(--blue); }
+  .stat-num.red { color: var(--red); }
+  .stat-label { font-size: 11px; color: var(--text-lt); text-transform: uppercase; letter-spacing: 1px; }
+
+  /* ── PAA ── */
+  .paa-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .paa-item {
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--text);
+    border-left: 3px solid var(--grey);
+  }
+  .paa-item.has-gap { border-left-color: var(--green); background: #f0fdfc; color: #1a6b68; }
+  .paa-cluster { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--grey-mid); margin-bottom: 4px; }
+
+  /* ── E-E-A-T ── */
+  .eeat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .eeat-card {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px;
+  }
+  .eeat-letter {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    background: var(--navy);
+    color: white;
+    font-size: 18px;
+    font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 12px;
+  }
+  .eeat-letter.e1 { background: var(--red); }
+  .eeat-letter.e2 { background: var(--blue); }
+  .eeat-letter.a  { background: var(--orange); }
+  .eeat-letter.t  { background: var(--green-dark); }
+  .eeat-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .eeat-status {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+  }
+  .status-missing { background: var(--navy); color: white; }
+  .status-action  { background: var(--navy-mid); color: white; }
+  .eeat-text { font-size: 12px; color: var(--text-lt); line-height: 1.5; }
+  .eeat-action { font-size: 12px; color: var(--navy); font-weight: 600; margin-top: 8px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,.45);
+    text-align: center;
+    padding: 24px 24px 32px;
+    font-size: 12px;
+    border-top: 2px solid var(--navy-mid);
+  }
+  footer strong { color: var(--green); }
+  footer span.sep { margin: 0 8px; opacity: .3; }
+
+  /* ── UTIL ── */
+  .divider {
+    height: 1px;
+    background: var(--grey);
+    margin: 24px 0;
+  }
+  .flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .mt-16 { margin-top: 16px; }
+  .mt-24 { margin-top: 24px; }
+  .mb-0 { margin-bottom: 0; }
+  .text-muted { color: var(--text-lt); }
+  .font-mono { font-family: monospace; }
+
+  /* ── BREAKING NEWS ── */
+  .breaking {
+    background: linear-gradient(90deg, var(--navy), var(--navy-mid));
+    color: white;
+    border-radius: var(--radius);
+    padding: 16px 22px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .breaking-label {
+    background: var(--green);
+    color: var(--navy);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .breaking-text { font-size: 14px; font-weight: 600; }
+  .breaking-sub  { font-size: 12px; color: rgba(255,255,255,.75); margin-top: 2px; }
+
+  @media (max-width: 768px) {
+    .card-grid, .card-grid-3, .toc,
+    .aio-grid, .paa-grid, .eeat-grid,
+    .conclusion-grid, .timeline-grid,
+    .stat-row { grid-template-columns: 1fr; }
+    .comp-card { grid-template-columns: 1fr; }
+    .bl-row    { grid-template-columns: 1fr; }
+    .week-row  { grid-template-columns: 80px 1fr; }
+    .week-links, .week-effort { display: none; }
+    .cover { padding: 40px 24px; }
+    .cover h1 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     COVER
+════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="container">
+    <div style="margin-bottom:28px;position:relative;z-index:1;">
+      <span style="font-family:'Roboto Slab',serif;font-size:20px;font-weight:600;color:white;letter-spacing:-.5px;">Integrat<span style="color:var(--green);">R</span></span>
+      <span style="font-size:11px;color:rgba(255,255,255,.4);margin-left:10px;letter-spacing:1px;text-transform:uppercase;">innovation campus</span>
+    </div>
+    <div class="cover-label">Vertrouwelijk rapport</div>
+    <h1>SEO Strategie<br><span>IntegratR.tech</span></h1>
+    <p class="subtitle">Keyword Research · Concurrentieanalyse · SERP-analyse · Backlinkstrategie</p>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <span class="label">Opgesteld</span>
+        <span class="value">April 2026</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="label">Markt</span>
+        <span class="value">Nederland (NL-first)</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="label">Databron</span>
+        <span class="value">DataForSEO · Live data</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="label">Zoekmachine</span>
+        <span class="value">Google NL</span>
+      </div>
+    </div>
+    <div class="cover-pills">
+      <span class="cover-pill">7 keyword-clusters geanalyseerd</span>
+      <span class="cover-pill">8 concrete contentkansen</span>
+      <span class="cover-pill">20+ backlinkdoelen geïdentificeerd</span>
+      <span class="cover-pill">Live SERP-data · 5 toptermen</span>
+      <span class="cover-pill">60+ B2B keywords in kaart gebracht</span>
+    </div>
+  </div>
+</div>
+
+<div class="container page-body">
+
+  <!-- TOC -->
+  <nav class="toc">
+    <div class="toc-title">Inhoudsopgave</div>
+    <a href="#summary"    class="toc-item"><span class="toc-num">0</span>Samenvatting & Prioriteiten</a>
+    <a href="#keywords"   class="toc-item"><span class="toc-num">1</span>Keyword Research</a>
+    <a href="#competitor" class="toc-item"><span class="toc-num">2</span>Concurrentieanalyse</a>
+    <a href="#serp"       class="toc-item"><span class="toc-num">3</span>SERP & AI Overviews</a>
+    <a href="#eeat"       class="toc-item"><span class="toc-num">4</span>E-E-A-T Analyse</a>
+    <a href="#content"    class="toc-item"><span class="toc-num">5</span>Content Roadmap</a>
+    <a href="#backlinks"  class="toc-item"><span class="toc-num">6</span>Backlinkstrategie</a>
+    <a href="#conclusion" class="toc-item"><span class="toc-num">7</span>Conclusie & Advies</a>
+  </nav>
+
+
+  <!-- ═══════ 0. SUMMARY ═══════ -->
+  <section class="section" id="summary">
+    <div class="section-header">
+      <div class="section-icon icon-green"><i data-lucide="layout-dashboard"></i></div>
+      <div>
+        <h2>Samenvatting & Prioriteiten</h2>
+        <div class="section-desc">De kern van het rapport in één oogopslag</div>
+      </div>
+    </div>
+
+    <div class="summary-box">
+      <h3>De centrale bevinding</h3>
+      <p>IntegratR opereert in een niche waar de <strong>content-leegte enorm is</strong> ten opzichte van de zoekvraag. Geen enkel Nederlands bedrijf heeft tot nu toe gezaghebbende content geschreven over de certificering en integratie van zero-emissie zware voertuigen. TÜV en DEKRA hebben servicepagina's. OEM's hebben productpagina's. Nieuwssites hebben nieuws. <strong>Niemand heeft de expertlaag</strong> — en dat is precies de positie van IntegratR.</p>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="stat-num green">480</div>
+        <div class="stat-label">Searches/mo · "homologatie"<br>LOW comp · +23% YoY</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num blue">1.600</div>
+        <div class="stat-label">Searches/mo · "elektrische vrachtwagen"<br>Hoog volume, via long-tail</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num orange">8</div>
+        <div class="stat-label">Geïdentificeerde content-gaps<br>Met directe rankingkansen</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num red">0</div>
+        <div class="stat-label">Bestaande NL-artikelen over<br>ZE-voertuig homologatie</div>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <div class="tbl-header">Prioriteitenmatrix — wat te doen en wanneer</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Prioriteit</th>
+            <th>Actie</th>
+            <th>Impact</th>
+            <th>Tijdlijn</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="p-now">
+            <td><span class="badge badge-high">Direct</span></td>
+            <td class="td-kw-highlight">Fix sitemap + hreflang + schema</td>
+            <td>Ranking überhaupt mogelijk</td>
+            <td>Deze week</td>
+            <td><span class="badge badge-navy">Technisch</span></td>
+          </tr>
+          <tr class="p-now">
+            <td><span class="badge badge-high">Direct</span></td>
+            <td class="td-kw-highlight">Publiceer SWIM subsidie-artikel</td>
+            <td>1e editorial backlink + traffic</td>
+            <td>Deze week</td>
+            <td><span class="badge badge-navy">Content</span></td>
+          </tr>
+          <tr class="p-high">
+            <td><span class="badge badge-orange">Hoog</span></td>
+            <td class="td-kw">Schrijf homologatie pillar-page</td>
+            <td>Eigenaarschap #1 gap-keyword</td>
+            <td>Week 2–3</td>
+            <td><span class="badge badge-navy">Content</span></td>
+          </tr>
+          <tr class="p-high">
+            <td><span class="badge badge-orange">Hoog</span></td>
+            <td class="td-kw">Foundation backlinks (OostNL, LinkedIn)</td>
+            <td>Autoriteitsopbouw</td>
+            <td>Week 1–2</td>
+            <td><span class="badge badge-navy">Links</span></td>
+          </tr>
+          <tr class="p-med">
+            <td><span class="badge badge-medium">Middel</span></td>
+            <td class="td-kw">ZES-zones artikel (OEM-perspectief)</td>
+            <td>260/mo · LOW comp</td>
+            <td>Maand 2</td>
+            <td><span class="badge badge-navy">Content</span></td>
+          </tr>
+          <tr class="p-med">
+            <td><span class="badge badge-medium">Middel</span></td>
+            <td class="td-kw">AanZET + SWIM subsidiegids 2026</td>
+            <td>90/mo · commerciële intentie</td>
+            <td>Maand 2</td>
+            <td><span class="badge badge-navy">Content</span></td>
+          </tr>
+          <tr class="p-low">
+            <td><span class="badge badge-low">Regulier</span></td>
+            <td class="td-kw">Waterstof vrachtwagen: techniek + cert.</td>
+            <td>140/mo · +27% MoM trend</td>
+            <td>Maand 2–3</td>
+            <td><span class="badge badge-navy">Content</span></td>
+          </tr>
+          <tr class="p-low">
+            <td><span class="badge badge-low">Regulier</span></td>
+            <td class="td-kw">Elektrisch bouwmaterieel cluster</td>
+            <td>480/mo · volume bouwen</td>
+            <td>Maand 3–6</td>
+            <td><span class="badge badge-navy">Content</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <!-- ═══════ 1. KEYWORDS ═══════ -->
+  <section class="section" id="keywords">
+    <div class="section-header">
+      <div class="section-icon icon-blue"><i data-lucide="search"></i></div>
+      <div>
+        <h2>Keyword Research</h2>
+        <div class="section-desc">7 clusters · 60+ keywords · Nederlandse B2B-markt · live data</div>
+      </div>
+      <span class="section-tag">DataForSEO · Google NL</span>
+    </div>
+
+    <div class="insight insight-blue">
+      <strong>B2B-marktcontext:</strong> Nederlandse zoekvolumes voor ZE-zware mobiliteit liggen tussen 10–1.600/mo — normaal voor een specialistische B2B-inkoopmarkt. Eén pagina gelezen door een OEM-directeur, R&D-manager of aanbestedingsadviseur heeft meer commerciële waarde dan tienduizenden B2C-bezoekers. De focus ligt op intentie en autoriteit, niet op bulk volume.
+    </div>
+
+    <!-- ── CLUSTER 1: CERTIFICERING ── -->
+    <div class="tbl-wrap mt-24">
+      <div class="tbl-header" style="background:#000A2D;">Cluster 1 — Certificering &amp; Typegoedkeuring &nbsp;·&nbsp; Topprioriteit</div>
+      <table>
+        <thead>
+          <tr><th>Keyword</th><th>Type</th><th>Vol/mo</th><th>Competitie</th><th>CPC</th><th>Trend</th><th>B2B-waarde</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-kw-highlight">homologatie</td>
+            <td><span class="badge badge-navy">Short-tail</span></td>
+            <td><strong>480</strong></td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>—</td>
+            <td style="color:var(--green-dark);font-weight:700;">+23% YoY</td>
+            <td><span class="stars">★★★</span> Topkans</td>
+          </tr>
+          <tr>
+            <td class="td-kw-highlight">typegoedkeuring</td>
+            <td><span class="badge badge-navy">Short-tail</span></td>
+            <td><strong>320</strong></td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>—</td>
+            <td style="color:var(--green-dark);font-weight:700;">+12% YoY</td>
+            <td><span class="stars">★★★</span> Topkans</td>
+          </tr>
+          <tr>
+            <td class="td-kw">rdw typegoedkeuring</td>
+            <td><span class="badge badge-blue">Medium-tail</span></td>
+            <td>50</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>€2.66</td>
+            <td style="color:var(--grey-mid);">stabiel</td>
+            <td><span class="stars">★★</span> Sterk</td>
+          </tr>
+          <tr>
+            <td class="td-kw">voertuig certificering nederland</td>
+            <td><span class="badge badge-blue">Medium-tail</span></td>
+            <td>30</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>€3.10</td>
+            <td>—</td>
+            <td><span class="stars">★★</span> Sterk</td>
+          </tr>
+          <tr>
+            <td class="td-kw">homologatie zware voertuigen</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>—</td>
+            <td style="color:var(--green-dark);font-weight:700;">(↑) nieuw</td>
+            <td><span class="stars">★★★</span> Gap</td>
+          </tr>
+          <tr>
+            <td class="td-kw">elektrisch voertuig certificering</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="stars">★★★</span> Gap</td>
+          </tr>
+          <tr>
+            <td class="td-kw">homologatie elektrisch voertuig nederland</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="stars">★★★</span> Gap</td>
+          </tr>
+          <tr>
+            <td class="td-kw">WVTA typegoedkeuring procedure</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="stars">★★</span> Technisch</td>
+          </tr>
+          <tr>
+            <td class="td-kw">CE markering mobiele werktuigen</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="stars">★★</span> Technisch</td>
+          </tr>
+          <tr>
+            <td class="td-kw">typegoedkeuring kosten tijdlijn</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="stars">★★</span> Beslisser</td>
+          </tr>
+          <tr>
+            <td class="td-kw">homologatie adviesbureau nederland</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="stars">★★★</span> Commercieel</td>
+          </tr>
+          <tr>
+            <td class="td-kw">prototype naar typegoedkeuring</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="stars">★★★</span> Kernproduct</td>
+          </tr>
+          <tr>
+            <td class="td-kw">rdw keuring alternatieve aandrijving</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>€2.40</td>
+            <td>—</td>
+            <td><span class="stars">★★</span> Technisch</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="insight"><strong>Strategisch inzicht:</strong> "Homologatie" en "typegoedkeuring" zijn samen goed voor ~800 zoekopdrachten/mo met LOW concurrentie. Geen enkel Nederlands bedrijf heeft een diepgaande gids geschreven over dit proces specifiek voor zero-emissie zware voertuigen. IntegratR kan met twee pagina's de absolute marktleider worden in dit segment.</div>
+
+    <!-- ── CLUSTER 2: INTEGRATIE & ENGINEERING ── -->
+    <div class="tbl-wrap mt-24">
+      <div class="tbl-header" style="background:#13228E;">Cluster 2 — Systeemintegratie &amp; Engineering &nbsp;·&nbsp; Hoge prioriteit</div>
+      <table>
+        <thead>
+          <tr><th>Keyword</th><th>Type</th><th>Vol/mo</th><th>Competitie</th><th>Zoekintentie</th><th>B2B-waarde</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-kw-highlight">elektrische aandrijflijn</td>
+            <td><span class="badge badge-navy">Short-tail</span></td>
+            <td>20</td>
+            <td><span class="badge badge-medium">MED</span></td>
+            <td>Informationeel / commercieel</td>
+            <td><span class="stars">★★</span> Semantisch anker</td>
+          </tr>
+          <tr>
+            <td class="td-kw-highlight">systeemintegratie voertuig</td>
+            <td><span class="badge badge-blue">Medium-tail</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>Commercieel</td>
+            <td><span class="stars">★★★</span> Kernproduct</td>
+          </tr>
+          <tr>
+            <td class="td-kw">powertrain integratie</td>
+            <td><span class="badge badge-blue">Medium-tail</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>Technisch / commercieel</td>
+            <td><span class="stars">★★</span> Beslisser</td>
+          </tr>
+          <tr>
+            <td class="td-kw">zero-emissie aandrijfsysteem</td>
+            <td><span class="badge badge-blue">Medium-tail</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>Commercieel</td>
+            <td><span class="stars">★★★</span> Kernproduct</td>
+          </tr>
+          <tr>
+            <td class="td-kw">prototype naar serieproductie</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td>—</td>
+            <td>Commercieel</td>
+            <td><span class="stars">★★★</span> Kernproduct</td>
+          </tr>
+          <tr>
+            <td class="td-kw">elektrische aandrijflijn integratie off-road</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>Commercieel</td>
+            <td><span class="stars">★★★</span> Gap</td>
+          </tr>
+          <tr>
+            <td class="td-kw">engineering partner elektrisch materieel</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>Transactioneel</td>
+            <td><span class="stars">★★★</span> Commercieel</td>
+          </tr>
+          <tr>
+            <td class="td-kw">zero-emissie werktuig ontwikkeling</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>Commercieel</td>
+            <td><span class="stars">★★★</span> Gap</td>
+          </tr>
+          <tr>
+            <td class="td-kw">voertuig ontwikkelpartner nederland</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td>—</td>
+            <td>Transactioneel</td>
+            <td><span class="stars">★★★</span> Commercieel</td>
+          </tr>
+          <tr>
+            <td class="td-kw">aandrijftechnologie validatie certificering</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>Technisch</td>
+            <td><span class="stars">★★</span> E-E-A-T</td>
+          </tr>
+          <tr>
+            <td class="td-kw">first-of-a-kind voertuig certificering</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td>—</td>
+            <td>Technisch</td>
+            <td><span class="stars">★★★</span> Uniek</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="insight"><strong>Inzicht:</strong> "Prototype naar serieproductie" en "engineering partner elektrisch materieel" zijn directe commerciële zoektermen door R&D-managers en OEM-inkopers. Zero concurrentie — dit zijn de termen waarop IntegratR direct conversies kan verwachten.</div>
+
+    <!-- ── CLUSTER 3: ELEKTRIFICATIE ── -->
+    <div class="tbl-wrap mt-24">
+      <div class="tbl-header" style="background:#1F40BF;">Cluster 3 — Elektrificatie Zwaar Materieel &nbsp;·&nbsp; Volume-cluster</div>
+      <table>
+        <thead>
+          <tr><th>Keyword</th><th>Type</th><th>Vol/mo</th><th>Competitie</th><th>CPC</th><th>Trend</th><th>Aanpak</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-kw-highlight">elektrische vrachtwagen</td>
+            <td><span class="badge badge-navy">Short-tail</span></td>
+            <td><strong>1.600</strong></td>
+            <td><span class="badge badge-medium">MED</span></td>
+            <td>€4.20</td>
+            <td style="color:var(--grey-mid);">stabiel</td>
+            <td>Via long-tail flankeerstrategie</td>
+          </tr>
+          <tr>
+            <td class="td-kw">elektrische graafmachine</td>
+            <td><span class="badge badge-navy">Short-tail</span></td>
+            <td>480</td>
+            <td><span class="badge badge-high">HIGH</span></td>
+            <td>€3.80</td>
+            <td style="color:var(--grey-mid);">dalend</td>
+            <td>OEM te sterk — flankeer via specificaties</td>
+          </tr>
+          <tr>
+            <td class="td-kw">elektrische kraan</td>
+            <td><span class="badge badge-navy">Short-tail</span></td>
+            <td>480</td>
+            <td><span class="badge badge-high">HIGH</span></td>
+            <td>€3.50</td>
+            <td style="color:var(--grey-mid);">dalend</td>
+            <td>OEM te sterk — flankeer via specs</td>
+          </tr>
+          <tr>
+            <td class="td-kw">elektrische shovel</td>
+            <td><span class="badge badge-navy">Short-tail</span></td>
+            <td>390</td>
+            <td><span class="badge badge-high">HIGH</span></td>
+            <td>—</td>
+            <td style="color:var(--grey-mid);">dalend</td>
+            <td>Long-tail aanpak</td>
+          </tr>
+          <tr>
+            <td class="td-kw">elektrische tractor</td>
+            <td><span class="badge badge-navy">Short-tail</span></td>
+            <td>390</td>
+            <td><span class="badge badge-high">HIGH</span></td>
+            <td>—</td>
+            <td style="color:var(--grey-mid);">dalend</td>
+            <td>Long-tail aanpak</td>
+          </tr>
+          <tr>
+            <td class="td-kw">elektrische dumper</td>
+            <td><span class="badge badge-blue">Medium-tail</span></td>
+            <td>140</td>
+            <td><span class="badge badge-high">HIGH</span></td>
+            <td>—</td>
+            <td style="color:var(--grey-mid);">dalend</td>
+            <td>Secundair</td>
+          </tr>
+          <tr>
+            <td class="td-kw-highlight">elektrische rupskraan</td>
+            <td><span class="badge badge-blue">Medium-tail</span></td>
+            <td>70</td>
+            <td><span class="badge badge-medium">MED</span></td>
+            <td>—</td>
+            <td style="color:var(--green-dark);font-weight:700;">+40% QoQ (↑)</td>
+            <td><span class="stars">★★★</span> Stijgend · aanpakken</td>
+          </tr>
+          <tr>
+            <td class="td-kw-highlight">elektrisch zwaar materieel aanschaffen</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>€5.20</td>
+            <td>—</td>
+            <td><span class="stars">★★★</span> Inkoopintentie</td>
+          </tr>
+          <tr>
+            <td class="td-kw">zero-emissie bouwmachines zakelijk</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>€6.10</td>
+            <td>—</td>
+            <td><span class="stars">★★★</span> Inkoopintentie</td>
+          </tr>
+          <tr>
+            <td class="td-kw">elektrificatie zware werktuigen project</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="stars">★★★</span> Projectintentie</td>
+          </tr>
+          <tr>
+            <td class="td-kw">elektrisch off-road voertuig specificaties</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="stars">★★</span> Technisch</td>
+          </tr>
+          <tr>
+            <td class="td-kw">emissievrij bouwmaterieel vergelijken</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>€7.40</td>
+            <td>—</td>
+            <td><span class="stars">★★</span> Beslisser</td>
+          </tr>
+          <tr>
+            <td class="td-kw">elektrisch voertuig zware industrie</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="stars">★★</span> Semantisch</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="insight"><strong>Inzicht:</strong> De generieke machineterm-categorie (elektrische kraan/shovel/dumper) wordt gedomineerd door OEM-productpagina's. IntegratR moet hier niet frontaal concurreren. De kans zit in B2B-zoektermen met inkoopintentie: "aanschaffen", "zakelijk", "project" — die zijn onbezet en hebben hoge CPC.</div>
+
+    <!-- ── CLUSTER 4: WATERSTOF ── -->
+    <div class="tbl-wrap mt-24">
+      <div class="tbl-header" style="background:#1F40BF;">Cluster 4 — Waterstof &amp; Brandstofcel &nbsp;·&nbsp; Groeikluster</div>
+      <table>
+        <thead>
+          <tr><th>Keyword</th><th>Type</th><th>Vol/mo</th><th>Competitie</th><th>Trend</th><th>B2B-waarde</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-kw-highlight">waterstof vrachtwagen</td>
+            <td><span class="badge badge-navy">Short-tail</span></td>
+            <td><strong>140</strong></td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td style="color:var(--green-dark);font-weight:700;">+27% MoM (↑)</td>
+            <td><span class="stars">★★★</span> Topkans</td>
+          </tr>
+          <tr>
+            <td class="td-kw">waterstof brandstofcel</td>
+            <td><span class="badge badge-navy">Short-tail</span></td>
+            <td>170</td>
+            <td><span class="badge badge-high">HIGH</span></td>
+            <td style="color:var(--grey-mid);">dalend</td>
+            <td><span class="stars">★</span> Generiek</td>
+          </tr>
+          <tr>
+            <td class="td-kw-highlight">waterstof transport nederland</td>
+            <td><span class="badge badge-blue">Medium-tail</span></td>
+            <td>50</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td style="color:var(--green-dark);font-weight:700;">(↑) groei</td>
+            <td><span class="stars">★★</span> Sterk</td>
+          </tr>
+          <tr>
+            <td class="td-kw">kosten waterstof vrachtwagen</td>
+            <td><span class="badge badge-blue">Medium-tail</span></td>
+            <td>10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>—</td>
+            <td><span class="stars">★★</span> Beslisser</td>
+          </tr>
+          <tr>
+            <td class="td-kw">vrachtwagen ombouwen naar waterstof</td>
+            <td><span class="badge badge-blue">Medium-tail</span></td>
+            <td>10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>—</td>
+            <td><span class="stars">★★</span> Integratierelevant</td>
+          </tr>
+          <tr>
+            <td class="td-kw">SWIM subsidie waterstof voertuig</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td style="color:var(--green-dark);font-weight:700;">(↑) nieuw</td>
+            <td><span class="stars">★★★</span> Breaking · direct</td>
+          </tr>
+          <tr>
+            <td class="td-kw">brandstofcel integratie zwaar materieel</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>—</td>
+            <td><span class="stars">★★★</span> Kernproduct gap</td>
+          </tr>
+          <tr>
+            <td class="td-kw">waterstof aandrijving off-road machines</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="stars">★★★</span> Uniek</td>
+          </tr>
+          <tr>
+            <td class="td-kw">FC systeem voertuig integratie</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="stars">★★★</span> Technisch E-E-A-T</td>
+          </tr>
+          <tr>
+            <td class="td-kw">waterstof hybride werktuig bouw</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>—</td>
+            <td><span class="stars">★★</span> Niche</td>
+          </tr>
+          <tr>
+            <td class="td-kw">groene waterstof zwaar transport nederland</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td style="color:var(--green-dark);">(↑) groei</td>
+            <td><span class="stars">★★</span> Beleidsrelevant</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="insight"><strong>Inzicht:</strong> De SWIM-subsidie (geopend 1 april 2026) is een onmiddellijke kans: nul concurrerende content, hoge intentie bij OEM's die subsidie willen aanvragen. Publiceer binnen 48 uur voor een permanente AI-Overview-vermelding.</div>
+
+    <!-- ── CLUSTER 5: SUBSIDIES ── -->
+    <div class="tbl-wrap mt-24">
+      <div class="tbl-header" style="background:#1F40BF;">Cluster 5 — Subsidies &amp; Regelgeving &nbsp;·&nbsp; Hoge CPC · B2B-intentie</div>
+      <table>
+        <thead>
+          <tr><th>Keyword</th><th>Type</th><th>Vol/mo</th><th>Comp.</th><th>CPC</th><th>Trend</th><th>B2B-waarde</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-kw-highlight">zero-emissie zones nederland</td>
+            <td><span class="badge badge-navy">Short-tail</span></td>
+            <td><strong>260</strong></td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>€4.50</td>
+            <td>stabiel</td>
+            <td><span class="stars">★★</span> Sterk</td>
+          </tr>
+          <tr>
+            <td class="td-kw-highlight">subsidie elektrische vrachtwagen</td>
+            <td><span class="badge badge-navy">Short-tail</span></td>
+            <td><strong>90</strong></td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>€1.82</td>
+            <td style="color:var(--green-dark);font-weight:700;">+29% QoQ</td>
+            <td><span class="stars">★★</span> Sterk</td>
+          </tr>
+          <tr>
+            <td class="td-kw">zero emissie stadslogistiek</td>
+            <td><span class="badge badge-blue">Medium-tail</span></td>
+            <td>70</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>€4.30</td>
+            <td>—</td>
+            <td><span class="stars">★</span></td>
+          </tr>
+          <tr>
+            <td class="td-kw">emissieloze bouwplaats</td>
+            <td><span class="badge badge-blue">Medium-tail</span></td>
+            <td>40</td>
+            <td><span class="badge badge-medium">MED</span></td>
+            <td>€9.63</td>
+            <td style="color:var(--grey-mid);">dalend</td>
+            <td><span class="stars">★</span> Secundair</td>
+          </tr>
+          <tr>
+            <td class="td-kw-highlight">emissievrij transport</td>
+            <td><span class="badge badge-blue">Medium-tail</span></td>
+            <td><strong>30</strong></td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>—</td>
+            <td style="color:var(--green-dark);font-weight:700;">+100% YoY</td>
+            <td><span class="stars">★</span> Groei</td>
+          </tr>
+          <tr>
+            <td class="td-kw">DKTI subsidie transport</td>
+            <td><span class="badge badge-blue">Medium-tail</span></td>
+            <td>10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="stars">★★</span> B2B-directe zoektoegang</td>
+          </tr>
+          <tr>
+            <td class="td-kw">AanZET subsidie voorwaarden</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>€3.20</td>
+            <td>—</td>
+            <td><span class="stars">★★</span> Beleidsgericht</td>
+          </tr>
+          <tr>
+            <td class="td-kw">MIA VAMIL elektrisch voertuig zakelijk</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>€4.80</td>
+            <td>—</td>
+            <td><span class="stars">★★★</span> Hoge CPC · inkoopintentie</td>
+          </tr>
+          <tr>
+            <td class="td-kw">WBSO subsidie innovatieve voertuigen</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="stars">★★</span> R&amp;D-beslissers</td>
+          </tr>
+          <tr>
+            <td class="td-kw">zero-emissie zone verplicht 2025 2026</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>€5.10</td>
+            <td style="color:var(--green-dark);">(↑) urgentie</td>
+            <td><span class="stars">★★★</span> Regeldruk</td>
+          </tr>
+          <tr>
+            <td class="td-kw">innovatiesubsidie zwaar emissievrij transport</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td><span class="stars">★★</span> Financieringsvraag</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ── CLUSTER 6: AANBESTEDING ── -->
+    <div class="tbl-wrap mt-24">
+      <div class="tbl-header" style="background:#000A2D;">Cluster 6 — Aanbesteding &amp; B2B Procurement &nbsp;·&nbsp; NIEUW CLUSTER · Hoge commerciële waarde</div>
+      <table>
+        <thead>
+          <tr><th>Keyword</th><th>Type</th><th>Vol/mo</th><th>Competitie</th><th>CPC</th><th>B2B-doelgroep</th><th>Waarde</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-kw-highlight">aanbesteding zero-emissie voertuigen</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>€8.20</td>
+            <td>Overheid / aanbestedende dienst</td>
+            <td><span class="stars">★★★</span> Hoge CPC · Gap</td>
+          </tr>
+          <tr>
+            <td class="td-kw-highlight">tender elektrische werktuigen overheid</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>€7.50</td>
+            <td>Inkoopafdeling gemeente / Rijkswaterstaat</td>
+            <td><span class="stars">★★★</span> Gap</td>
+          </tr>
+          <tr>
+            <td class="td-kw-highlight">TCO elektrische vrachtwagen berekening</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>€6.80</td>
+            <td>Vlootmanager / CFO</td>
+            <td><span class="stars">★★★</span> Beslissertool</td>
+          </tr>
+          <tr>
+            <td class="td-kw">total cost of ownership elektrisch zwaar</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>€6.20</td>
+            <td>Vlootmanager / CFO</td>
+            <td><span class="stars">★★★</span> Beslissertool</td>
+          </tr>
+          <tr>
+            <td class="td-kw">wagenpark elektrificatie strategie</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>€5.60</td>
+            <td>Operationeel directeur / inkoopmanager</td>
+            <td><span class="stars">★★</span> Strategisch</td>
+          </tr>
+          <tr>
+            <td class="td-kw">prestatiecontract emissievrij materieel</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td>—</td>
+            <td>—</td>
+            <td>Aanbestedende overheid</td>
+            <td><span class="stars">★★★</span> Niche · onbezet</td>
+          </tr>
+          <tr>
+            <td class="td-kw">zero-emissie eisen aanbesteding 2025</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>€5.80</td>
+            <td>Projectleider infrastructuur</td>
+            <td><span class="stars">★★★</span> Urgentiekluster</td>
+          </tr>
+          <tr>
+            <td class="td-kw">aankoopgids elektrisch bouwmaterieel zakelijk</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td>—</td>
+            <td>—</td>
+            <td>Projectmanager bouw &amp; infra</td>
+            <td><span class="stars">★★</span> Content asset</td>
+          </tr>
+          <tr>
+            <td class="td-kw">rijksoverheid zero-emissie opdrachten beleid</td>
+            <td><span class="badge badge-green">Long-tail B2B</span></td>
+            <td>&lt;10</td>
+            <td><span class="badge badge-low">LOW</span></td>
+            <td>—</td>
+            <td>Beleidsadviseur / lobbyist OEM</td>
+            <td><span class="stars">★★</span> Beleidsnavigator</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="insight"><strong>Strategisch inzicht Cluster 6:</strong> Dit cluster is volledig onbezet en heeft de hoogste CPC-waarden (€6–€8+). De doelgroep zijn inkoopmanagers bij Rijkswaterstaat, gemeenten, bouw- en infrabedrijven die moeten bewijzen dat hun aanbesteding zero-emissie-compliant is. IntegratR is ideaal gepositioneerd als kennispartner voor dit type beslissers.</div>
+
+    <!-- ── CLUSTER 7: INNOVATIE ── -->
+    <div class="tbl-wrap mt-24">
+      <div class="tbl-header" style="background:#1F40BF;">Cluster 7 — Innovatie &amp; Positionering &nbsp;·&nbsp; Brand &amp; E-E-A-T</div>
+      <table>
+        <thead>
+          <tr><th>Keyword</th><th>Type</th><th>Vol/mo</th><th>Competitie</th><th>Doel</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-kw">innovatie campus nijmegen</td><td><span class="badge badge-blue">Medium-tail</span></td><td>&lt;10</td><td><span class="badge badge-low">LOW</span></td><td>Brand awareness · lokale autoriteit</td></tr>
+          <tr><td class="td-kw">smart mobility nederland zakelijk</td><td><span class="badge badge-blue">Medium-tail</span></td><td>50</td><td><span class="badge badge-medium">MED</span></td><td>Semantisch netwerk</td></tr>
+          <tr><td class="td-kw">duurzame mobiliteit industrie</td><td><span class="badge badge-blue">Medium-tail</span></td><td>30</td><td><span class="badge badge-low">LOW</span></td><td>Semantisch netwerk</td></tr>
+          <tr><td class="td-kw">open innovatie voertuigtechnologie</td><td><span class="badge badge-green">Long-tail B2B</span></td><td>&lt;10</td><td>—</td><td>Campus-positionering</td></tr>
+          <tr><td class="td-kw">test en validatie facility nederland</td><td><span class="badge badge-green">Long-tail B2B</span></td><td>&lt;10</td><td><span class="badge badge-low">LOW</span></td><td>Faciliteit bekendheid</td></tr>
+          <tr><td class="td-kw">pilot project elektrisch bouwmaterieel</td><td><span class="badge badge-green">Long-tail B2B</span></td><td>&lt;10</td><td><span class="badge badge-low">LOW</span></td><td>Projectpartner zoektermen</td></tr>
+          <tr><td class="td-kw">duurzame aandrijftechniek industrie</td><td><span class="badge badge-green">Long-tail B2B</span></td><td>&lt;10</td><td>—</td><td>E-E-A-T autoriteit</td></tr>
+          <tr><td class="td-kw">emissieloze logistiek industrie</td><td><span class="badge badge-green">Long-tail B2B</span></td><td>&lt;10</td><td><span class="badge badge-low">LOW</span></td><td>Semantisch netwerk</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card mt-24" style="background:var(--navy); color:white;">
+      <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--green);margin-bottom:12px;">Keyword-overzicht op type</div>
+      <div class="card-grid-3" style="gap:12px;">
+        <div style="background:rgba(255,255,255,.07);border-radius:8px;padding:16px;text-align:center;">
+          <div style="font-size:32px;font-weight:800;color:var(--green);">9</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.6);">Short-tail keywords</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:4px;">Volume-drivers · flankeerstrategie</div>
+        </div>
+        <div style="background:rgba(255,255,255,.07);border-radius:8px;padding:16px;text-align:center;">
+          <div style="font-size:32px;font-weight:800;color:var(--green);">18</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.6);">Medium-tail keywords</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:4px;">Cluster-versterkers · semantisch netwerk</div>
+        </div>
+        <div style="background:rgba(255,255,255,.07);border-radius:8px;padding:16px;text-align:center;">
+          <div style="font-size:32px;font-weight:800;color:var(--green);">37</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.6);">Long-tail B2B keywords</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.4);margin-top:4px;">Hoge intentie · directe conversiewaarde</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════ 2. COMPETITOR ═══════ -->
+  <section class="section" id="competitor">
+    <div class="section-header">
+      <div class="section-icon icon-orange"><i data-lucide="shield"></i></div>
+      <div>
+        <h2>Concurrentieanalyse</h2>
+        <div class="section-desc">Wie bezet de SERPs en waar liggen de gaten?</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">De drie concurrenttypes</div>
+      <div class="card-grid-3">
+        <div style="background:var(--blue-lt); border-radius:8px; padding:16px;">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--navy);margin-bottom:8px;">Type A · OEM-productpagina's</div>
+          <div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px;">MAN · Volvo · DAF · Scania</div>
+          <div style="font-size:12px;color:var(--text-lt);">Bezitten hoge volumes. Niet te verslaan op productzinnen.<br><strong style="color:var(--navy);">Strategie:</strong> Flankeer via certificering- en integratiecontent.</div>
+        </div>
+        <div style="background:#eef0ff; border-radius:8px; padding:16px;">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--navy-mid);margin-bottom:8px;">Type B · Certificeringsinstanties</div>
+          <div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px;">TÜV.nl · DEKRA.nl · KIWA</div>
+          <div style="font-size:12px;color:var(--text-lt);">Directe concurrenten voor "homologatie". Maar generalistisch — geen ZE-zwaar focus.<br><strong style="color:var(--navy);">Strategie:</strong> Bezit de educatieve laag die zij missen.</div>
+        </div>
+        <div style="background:#e0f8f7; border-radius:8px; padding:16px;">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--green-dark);margin-bottom:8px;">Type C · Content/info-sites</div>
+          <div style="font-size:13px;font-weight:600;color:var(--navy);margin-bottom:6px;">bigtruck.nl · opwegnaarzes.nl</div>
+          <div style="font-size:12px;color:var(--text-lt);">Berichtgeving en programmasites. Missen technische diepgang.<br><strong style="color:var(--navy);">Strategie:</strong> Versla met diepere expertise en E-E-A-T.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Competitor profiles -->
+    <div class="comp-card threat-high mt-16">
+      <div>
+        <div class="comp-name">TÜV Nederland</div>
+        <div class="comp-domain">tuv.nl</div>
+        <div class="comp-meta">
+          <div class="comp-meta-item"><span class="lbl">Keywords (NL)</span><span class="val">963</span></div>
+          <div class="comp-meta-item"><span class="lbl">Est. traffic/mo</span><span class="val">20.550</span></div>
+          <div class="comp-meta-item"><span class="lbl">Positie-1 rankings</span><span class="val">30</span></div>
+          <div class="comp-meta-item"><span class="lbl">Positie voor "homologatie"</span><span class="val">#4 (PAA)</span></div>
+        </div>
+        <div class="comp-gap"><strong>Content-gap:</strong> Generieke homologatie voor alle voertuigen. Geen content specifiek over ZE-zwaar/off-road, prototype-to-production of het RDW-proces voor nieuwe aandrijflijnen.</div>
+        <div class="comp-angle"><strong>IntegratR's hoek:</strong> TÜV dekt het proces — IntegratR dekt de implicaties voor ZE zware voertuigen specifiek.</div>
+      </div>
+      <div class="comp-threat-badge threat-badge-high">
+        <i data-lucide="alert-triangle" style="width:18px;height:18px;stroke:white;"></i>
+        <span>Dreigingsniveau</span>
+        <span style="font-size:16px;font-weight:800;">HOOG</span>
+      </div>
+    </div>
+
+    <div class="comp-card threat-high">
+      <div>
+        <div class="comp-name">DEKRA Nederland</div>
+        <div class="comp-domain">dekra.nl</div>
+        <div class="comp-meta">
+          <div class="comp-meta-item"><span class="lbl">SERP positie</span><span class="val">#2 "homologatie"</span></div>
+          <div class="comp-meta-item"><span class="lbl">AI Overview</span><span class="val">Geciteerd ✓</span></div>
+          <div class="comp-meta-item"><span class="lbl">Content type</span><span class="val">Servicepagina</span></div>
+        </div>
+        <div class="comp-gap"><strong>Content-gap:</strong> Servicepagina, geen educatieve gids. Geen blog-content. Geen ZE-specifieke of off-road focus. Geen diepgaande artikelen in het Nederlands.</div>
+        <div class="comp-angle"><strong>IntegratR's hoek:</strong> DEKRA is een testlaboratorium — IntegratR is een kennispartner. Andere positionering: IntegratR bezit de educatieve ruimte die DEKRA niet invult.</div>
+      </div>
+      <div class="comp-threat-badge threat-badge-high">
+        <i data-lucide="alert-triangle" style="width:18px;height:18px;stroke:white;"></i>
+        <span>Dreigingsniveau</span>
+        <span style="font-size:16px;font-weight:800;">HOOG</span>
+      </div>
+    </div>
+
+    <div class="comp-card threat-medium">
+      <div>
+        <div class="comp-name">bigtruck.nl</div>
+        <div class="comp-domain">bigtruck.nl · Nederlandse truck-nieuwssite</div>
+        <div class="comp-meta">
+          <div class="comp-meta-item"><span class="lbl">Keywords (NL)</span><span class="val">2.918</span></div>
+          <div class="comp-meta-item"><span class="lbl">Est. traffic/mo</span><span class="val">29.123</span></div>
+          <div class="comp-meta-item"><span class="lbl">Positie-1 rankings</span><span class="val">32</span></div>
+          <div class="comp-meta-item"><span class="lbl">Positie "waterstof vrachtwagen"</span><span class="val">#2</span></div>
+        </div>
+        <div class="comp-gap"><strong>Content-gap:</strong> Puur nieuws/journalistiek. Geen certificeringsinhoud, geen integratieproces, geen technische diepgang over powertrain-architectuur of subsidy-analyse vanuit fabrikantsperspectief.</div>
+        <div class="comp-angle"><strong>IntegratR's hoek:</strong> bigtruck.nl vertelt <em>wat er is gebeurd</em> — IntegratR vertelt <em>wat het betekent voor jouw engineering- en certificeringstraject</em>.</div>
+      </div>
+      <div class="comp-threat-badge threat-badge-medium">
+        <i data-lucide="minus-circle" style="width:18px;height:18px;stroke:white;"></i>
+        <span>Dreigingsniveau</span>
+        <span style="font-size:16px;font-weight:800;">MEDIUM</span>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="comp-card threat-high mb-0" style="display:block;">
+        <div class="comp-name">opwegnaarzes.nl</div>
+        <div class="comp-domain">opwegnaarzes.nl · ZES-programmasite</div>
+        <div class="comp-meta" style="margin-top:8px;">
+          <div class="comp-meta-item"><span class="lbl">Keywords</span><span class="val">1.070</span></div>
+          <div class="comp-meta-item"><span class="lbl">Traffic/mo</span><span class="val">27.000</span></div>
+        </div>
+        <div class="comp-gap" style="margin-top:8px;"><strong>Gap:</strong> Volledig gericht op exploitanten/chauffeurs. Niets over wat ZES betekent voor voertuigfabrikanten en integratoren.</div>
+        <div class="comp-angle"><strong>Hoek:</strong> Zelfde onderwerp, ander publiek.</div>
+      </div>
+      <div class="comp-card threat-low mb-0" style="display:block;">
+        <div class="comp-name">logistiekbereikbaar.nl</div>
+        <div class="comp-domain">logistiekbereikbaar.nl · Programmasite</div>
+        <div class="comp-meta" style="margin-top:8px;">
+          <div class="comp-meta-item"><span class="lbl">Keywords</span><span class="val">143</span></div>
+          <div class="comp-meta-item"><span class="lbl">Traffic/mo</span><span class="val">438</span></div>
+        </div>
+        <div class="comp-gap" style="margin-top:8px;"><strong>Gap:</strong> Oppervlakkige content. Nul positie-1 rankings.</div>
+        <div class="comp-angle"><strong>Hoek:</strong> Met elk goed artikel over overlappende onderwerpen makkelijk te verslaan.</div>
+      </div>
+    </div>
+
+    <div class="insight insight-green mt-16">
+      <strong>Signaal van b-style.eu:</strong> Een klein mobiliteitsbedrijf schreef één blogpost over "homologatie voor voertuigen" en staat nu geciteerd in Google's AI Overview. IntegratR heeft sterkere credentials en hoeft alleen maar te publiceren.
+    </div>
+  </section>
+
+
+  <!-- ═══════ 3. SERP ═══════ -->
+  <section class="section" id="serp">
+    <div class="section-header">
+      <div class="section-icon icon-purple"><i data-lucide="bar-chart-2"></i></div>
+      <div>
+        <h2>SERP-analyse & AI Overviews</h2>
+        <div class="section-desc">Live Google NL-resultaten voor de 5 toptermen</div>
+      </div>
+      <span class="section-tag">Live · April 2026</span>
+    </div>
+
+    <div class="breaking">
+      <span class="breaking-label">Actueel</span>
+      <div>
+        <div class="breaking-text">SWIM-subsidie (Waterstof in Mobiliteit) opende VANDAAG — 1 april 2026</div>
+        <div class="breaking-sub">Truckstar.nl berichtte 2 dagen geleden. Nul concurrerende content bestaat nog. Publiceer vandaag.</div>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div>
+        <div class="serp-box">
+          <div class="serp-header">
+            <span class="serp-kw">homologatie</span>
+            480/mo · LOW · +23% YoY
+          </div>
+          <div class="serp-row"><span class="serp-pos">AI</span><span class="serp-domain">Google AI Overview</span><span class="serp-title" style="color:var(--blue);">Citeert TÜV.nl, DEKRA.nl, b-style.eu</span></div>
+          <div class="serp-row"><span class="serp-pos">1</span><span class="serp-domain">nl.wikipedia.org</span><span class="serp-title">Homologatie — Wikipedia (generiek)</span></div>
+          <div class="serp-row"><span class="serp-pos">2</span><span class="serp-domain">dekra.nl</span><span class="serp-title">Homologatie van voertuigen — servicepagina</span></div>
+          <div class="serp-row"><span class="serp-pos">3</span><span class="serp-domain">vlaanderen.be</span><span class="serp-title">Belgische overheid</span></div>
+          <div class="serp-row"><span class="serp-pos">4–10</span><span class="serp-domain" style="color:var(--text-lt);">Advocaten, motorsport, Belgische sites</span><span class="serp-title"></span><span class="serp-type"><span class="serp-gap-tag">GAP OPEN ✓</span></span></div>
+        </div>
+
+        <div class="serp-box">
+          <div class="serp-header">
+            <span class="serp-kw">elektrische vrachtwagen</span>
+            1.600/mo · MEDIUM
+          </div>
+          <div class="serp-row"><span class="serp-pos p1">1</span><span class="serp-domain">man-nederland.nl</span><span class="serp-title">MAN eTruck productpagina</span></div>
+          <div class="serp-row"><span class="serp-pos p2">2</span><span class="serp-domain">man.eu</span><span class="serp-title">MAN e-vrachtwagens</span></div>
+          <div class="serp-row"><span class="serp-pos p2">3</span><span class="serp-domain">truckland.nl</span><span class="serp-title">Dealer — DAF Electric voorraad</span></div>
+          <div class="serp-row"><span class="serp-pos">4</span><span class="serp-domain">logistiekbereikbaar.nl</span><span class="serp-title">Gids elektrische trucks</span></div>
+          <div class="serp-row"><span class="serp-pos">5</span><span class="serp-domain">bigtruck.nl / rabobank.nl</span><span class="serp-title">Nieuws / financieel</span><span class="serp-type"><span class="badge badge-medium" style="font-size:10px;">Via long-tail</span></span></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="serp-box">
+          <div class="serp-header">
+            <span class="serp-kw">waterstof vrachtwagen</span>
+            140/mo · LOW · +27% MoM
+          </div>
+          <div class="serp-row"><span class="serp-pos p1">1</span><span class="serp-domain">rtvutrecht.nl</span><span class="serp-title">Nieuws: MAN waterstoftruck</span></div>
+          <div class="serp-row"><span class="serp-pos p2">2</span><span class="serp-domain">bigtruck.nl</span><span class="serp-title">Nieuws: Volvo waterstof verbrandingsmotor</span></div>
+          <div class="serp-row"><span class="serp-pos p2">3</span><span class="serp-domain">man-nederland.nl</span><span class="serp-title">Productpagina</span></div>
+          <div class="serp-row"><span class="serp-pos">4–8</span><span class="serp-domain" style="color:var(--text-lt);">DAF · Volvo · dealers · Air Products</span><span class="serp-title"></span><span class="serp-type"><span class="serp-gap-tag">GAP OPEN ✓</span></span></div>
+        </div>
+
+        <div class="serp-box">
+          <div class="serp-header">
+            <span class="serp-kw">subsidie elektrische vrachtwagen</span>
+            90/mo · LOW · +29% QoQ
+          </div>
+          <div class="serp-row"><span class="serp-pos">AI</span><span class="serp-domain">Google AI Overview</span><span class="serp-title" style="color:var(--blue);">AanZET details, bedragen, percentages</span></div>
+          <div class="serp-row"><span class="serp-pos p1">1</span><span class="serp-domain">ondernemersplein.overheid.nl</span><span class="serp-title">AanZET subsidie</span></div>
+          <div class="serp-row"><span class="serp-pos p2">2</span><span class="serp-domain">volvotrucks.nl</span><span class="serp-title">Subsidie voor elektrische vrachtwagen</span></div>
+          <div class="serp-row"><span class="serp-pos">3–5</span><span class="serp-domain">rabobank · evofenedex · slimschoon</span><span class="serp-title"></span><span class="serp-type"><span class="badge badge-orange" style="font-size:10px;">Unieke hoek nodig</span></span></div>
+        </div>
+
+        <div class="serp-box">
+          <div class="serp-header">
+            <span class="serp-kw">zero-emissie zones nederland</span>
+            260/mo · LOW · KD 25
+          </div>
+          <div class="serp-row"><span class="serp-pos p1">1</span><span class="serp-domain">milieuzones.nl</span><span class="serp-title">Dedicated ZES-site</span></div>
+          <div class="serp-row"><span class="serp-pos p2">2</span><span class="serp-domain">opwegnaarzes.nl</span><span class="serp-title">ZES-programma</span></div>
+          <div class="serp-row"><span class="serp-pos">3–9</span><span class="serp-domain" style="color:var(--text-lt);">Evofenedex · gemeenten · lease-sites</span><span class="serp-title"></span><span class="serp-type"><span class="serp-gap-tag">Fabrikant-angle vrij</span></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Overview status -->
+    <div class="card mt-16">
+      <div class="card-title">AI Overview Status</div>
+      <div class="aio-grid">
+        <div class="aio-card has-aio">
+          <div class="aio-kw">homologatie</div>
+          <div class="aio-status"><span class="badge badge-blue">AI Overview aanwezig</span></div>
+          <div class="aio-opp"><strong>Kans:</strong> Schrijf de definitieve NL ZE-gids → IntegratR wordt geciteerde bron</div>
+        </div>
+        <div class="aio-card has-aio">
+          <div class="aio-kw">subsidie elektrische vrachtwagen</div>
+          <div class="aio-status"><span class="badge badge-blue">AI Overview aanwezig (uitgebreid)</span></div>
+          <div class="aio-opp"><strong>Kans:</strong> Neem unieke <strong>fabrikant/integrator-hoek</strong> — niet de kopershoek die AI al dekt</div>
+        </div>
+        <div class="aio-card no-aio">
+          <div class="aio-kw">waterstof vrachtwagen</div>
+          <div class="aio-status"><span class="badge badge-green">Geen AI Overview</span></div>
+          <div class="aio-opp"><strong>Kans:</strong> <strong>First mover</strong> op technische/integratie gids — potentieel om AI-bron te worden</div>
+        </div>
+        <div class="aio-card no-aio">
+          <div class="aio-kw">elektrische vrachtwagen</div>
+          <div class="aio-status"><span class="badge badge-green">Geen AI Overview</span></div>
+          <div class="aio-opp"><strong>Kans:</strong> Nog geen tekst-content winnaar — aanvallen via "elektrische vrachtwagen <strong>certificering</strong>"</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAA -->
+    <div class="card mt-16">
+      <div class="card-title">People Also Ask — Direct bruikbaar als H2-koppen</div>
+      <div class="paa-grid">
+        <div class="paa-item has-gap"><div class="paa-cluster">Certificering</div>"Wat is de homologatieversie van een voertuig?" — geen ZE-specifiek antwoord</div>
+        <div class="paa-item has-gap"><div class="paa-cluster">Waterstof</div>"Wat is het grootste probleem met waterstofauto's?" — past bij technische expertise</div>
+        <div class="paa-item has-gap"><div class="paa-cluster">Subsidies</div>"Welke subsidies zijn er in 2026 voor elektrisch rijden?" — bredere kans</div>
+        <div class="paa-item has-gap"><div class="paa-cluster">ZES-zones</div>"Wat zijn de regels voor zero-emissiezones in Nederland?" — informationele gap</div>
+        <div class="paa-item"><div class="paa-cluster">Elektrisch</div>"Wat kost een elektrische vrachtwagen?" — al beantwoord</div>
+        <div class="paa-item"><div class="paa-cluster">Subsidies</div>"Hoe kan ik AanZET subsidie aanvragen?" — navigational, niet winbaar</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════ 4. E-E-A-T ═══════ -->
+  <section class="section" id="eeat">
+    <div class="section-header">
+      <div class="section-icon icon-red"><i data-lucide="award"></i></div>
+      <div>
+        <h2>E-E-A-T Analyse</h2>
+        <div class="section-desc">Experience · Expertise · Authoritativeness · Trustworthiness</div>
+      </div>
+    </div>
+
+    <div class="eeat-grid">
+      <div class="eeat-card">
+        <div class="eeat-letter e1">E</div>
+        <div class="eeat-title">Experience (Ervaring)</div>
+        <div class="eeat-status status-missing">Ontbreekt online</div>
+        <div class="eeat-text">Geen blog = geen demonstratie van praktijkkennis. Google en lezers kunnen de hands-on expertise van het team niet beoordelen.</div>
+        <div class="eeat-action">→ Podcast-transcripten naar blog. Concrete projectervaringen verwerken in artikelen.</div>
+      </div>
+      <div class="eeat-card">
+        <div class="eeat-letter e2">E</div>
+        <div class="eeat-title">Expertise</div>
+        <div class="eeat-status status-missing">Onzichtbaar</div>
+        <div class="eeat-text">De technische achtergrond van het integratieteam bestaat niet online. Geen auteurspagina's, geen LinkedIn-koppelingen, geen quotes in vakpers.</div>
+        <div class="eeat-action">→ Auteurspagina's aanmaken voor de technisch specialisten met credentials en LinkedIn.</div>
+      </div>
+      <div class="eeat-card">
+        <div class="eeat-letter a">A</div>
+        <div class="eeat-title">Authoritativeness (Autoriteit)</div>
+        <div class="eeat-status status-action">Opbouwen</div>
+        <div class="eeat-text">Nul backlinks, nul geïndexeerde content. Geen citaties door brancheverenigingen of vakpers.</div>
+        <div class="eeat-action">→ Gastposts op bigtruck.nl of truckstar.nl. Vermelding bij Evofenedex, TLN en OostNL.</div>
+      </div>
+      <div class="eeat-card">
+        <div class="eeat-letter t">T</div>
+        <div class="eeat-title">Trustworthiness (Betrouwbaarheid)</div>
+        <div class="eeat-status status-action">Technische fix nodig</div>
+        <div class="eeat-text">Sitemap geeft fout (Google kan hem niet ophalen). Geen hreflang-tags. Geen schema-markup. Pagina's concurreren met elkaar.</div>
+        <div class="eeat-action">→ Fix sitemap + implementeer hreflang + Schema.org (Organization, BlogPosting, Person).</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════ 5. CONTENT ═══════ -->
+  <section class="section" id="content">
+    <div class="section-header">
+      <div class="section-icon icon-yellow"><i data-lucide="file-text"></i></div>
+      <div>
+        <h2>Content Roadmap</h2>
+        <div class="section-desc">Eerste 6 blogposts — gebaseerd op podcast + keyword gaps</div>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <div class="tbl-header">Aanbevolen publicatieplanning</div>
+      <table>
+        <thead>
+          <tr><th>#</th><th>Titel</th><th>Primaire KW</th><th>Cluster</th><th>Prioriteit</th></tr>
+        </thead>
+        <tbody>
+          <tr class="p-now">
+            <td><strong>1</strong></td>
+            <td class="td-kw">SWIM subsidie 2026: wat betekent dit voor voertuigintegratoren en OEM's?</td>
+            <td><span class="badge badge-navy">SWIM subsidie waterstof</span></td>
+            <td>Subsidies</td>
+            <td><span class="badge badge-high">Direct</span></td>
+          </tr>
+          <tr class="p-now">
+            <td><strong>2</strong></td>
+            <td class="td-kw">Homologatie van zero-emissie zware voertuigen: de complete gids voor OEM's</td>
+            <td><span class="badge badge-navy">homologatie</span></td>
+            <td>Certificering</td>
+            <td><span class="badge badge-high">Week 2–3</span></td>
+          </tr>
+          <tr class="p-high">
+            <td><strong>3</strong></td>
+            <td class="td-kw">Zero-emissie zones in Nederland: perspectief voor voertuigleveranciers</td>
+            <td><span class="badge badge-navy">zero-emissie zones NL</span></td>
+            <td>Regelgeving</td>
+            <td><span class="badge badge-orange">Maand 2</span></td>
+          </tr>
+          <tr class="p-high">
+            <td><strong>4</strong></td>
+            <td class="td-kw">Subsidies voor elektrische vrachtwagens 2026: compleet overzicht</td>
+            <td><span class="badge badge-navy">subsidie elektrisch vrachtw.</span></td>
+            <td>Subsidies</td>
+            <td><span class="badge badge-orange">Maand 2</span></td>
+          </tr>
+          <tr class="p-med">
+            <td><strong>5</strong></td>
+            <td class="td-kw">Waterstof vrachtwagen vs. elektrisch: technologie, voor- en nadelen</td>
+            <td><span class="badge badge-navy">waterstof vrachtwagen</span></td>
+            <td>Waterstof</td>
+            <td><span class="badge badge-medium">Maand 2–3</span></td>
+          </tr>
+          <tr class="p-low">
+            <td><strong>6</strong></td>
+            <td class="td-kw">Elektrische bouwmachines: van graafmachine tot rupskraan</td>
+            <td><span class="badge badge-navy">elektrische graafmachine</span></td>
+            <td>Elektrificatie</td>
+            <td><span class="badge badge-low">Maand 3</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <!-- ═══════ 6. BACKLINKS ═══════ -->
+  <section class="section" id="backlinks">
+    <div class="section-header">
+      <div class="section-icon icon-green"><i data-lucide="link-2"></i></div>
+      <div>
+        <h2>Backlinkstrategie</h2>
+        <div class="section-desc">Van nul naar geloofwaardig profiel in 8 weken</div>
+      </div>
+    </div>
+
+    <div class="insight insight-blue">
+      <strong>Uitgangspunt:</strong> IntegratR start met nul backlinks. Het doel in de eerste 3 maanden is niet een groot profiel, maar een <strong>geloofwaardig, topicrelevant</strong> profiel. Drie links van evofenedex.nl, TLN.nl en bigtruck.nl verslaan dertig links van generieke bedrijfsgidsen.
+    </div>
+
+    <!-- Tier 1 -->
+    <div class="bl-tier bl-t1 mt-24">
+      <div class="bl-tier-header">Laag 1 — Foundation Links (Week 1–2 · Nul redactionele moeite)</div>
+      <div class="bl-row">
+        <div><div class="bl-target">LinkedIn Bedrijfspagina</div><div class="bl-domain">linkedin.com</div></div>
+        <div class="bl-why">Integratieteam volledig profiel met juiste functietitels → E-E-A-T signaal. Link naar integratr.tech verplicht.</div>
+        <div class="bl-effort">30 min</div>
+      </div>
+      <div class="bl-row">
+        <div><div class="bl-target">Google Business Profile</div><div class="bl-domain">business.google.com</div></div>
+        <div class="bl-why">Lokale SEO-anker voor Nijmegen. Categorie: "Voertuigtechnologie" of "Technisch adviesbureau".</div>
+        <div class="bl-effort">30 min</div>
+      </div>
+      <div class="bl-row">
+        <div><div class="bl-target">Crunchbase & Dealroom.co</div><div class="bl-domain">crunchbase.com / dealroom.co</div></div>
+        <div class="bl-why">Gebruikt door pers en investeerders. Dofollow-links, hoge domeinautoriteit.</div>
+        <div class="bl-effort">45 min</div>
+      </div>
+      <div class="bl-row">
+        <div><div class="bl-target">NL-Automotive</div><div class="bl-domain">nl-automotive.nl</div></div>
+        <div class="bl-why">Dutch automotive/mobility industrieassociatie. Hoge brancherelevantie voor Google.</div>
+        <div class="bl-effort">30 min</div>
+      </div>
+      <div class="bl-row">
+        <div><div class="bl-target">OostNL</div><div class="bl-domain">oostnl.nl</div></div>
+        <div class="bl-why">Regionale ontwikkelingsmaatschappij Gelderland. Linkt actief naar innovatieve Nijmeegse bedrijven. Hoge DA.</div>
+        <div class="bl-effort">30 min</div>
+      </div>
+      <div class="bl-row">
+        <div><div class="bl-target">Gemeente Nijmegen</div><div class="bl-domain">nijmegen.nl</div></div>
+        <div class="bl-why">Nijmegen is een van de 18 ZES-steden. Lokale overheid publiceert over ZE-bedrijfsecosysteem.</div>
+        <div class="bl-effort">30 min</div>
+      </div>
+      <div class="bl-row">
+        <div><div class="bl-target">RVO.nl kennispartners</div><div class="bl-domain">rvo.nl</div></div>
+        <div class="bl-why">RVO lijst expertorganisaties voor ZE-mobiliteitssubsidies. Overheidsdomein = hoog vertrouwen.</div>
+        <div class="bl-effort">1 uur</div>
+      </div>
+    </div>
+
+    <!-- Tier 2 -->
+    <div class="bl-tier bl-t2 mt-16">
+      <div class="bl-tier-header">Laag 2A — Rijdt op het SWIM-nieuws (Deze week)</div>
+      <div class="bl-row">
+        <div><div class="bl-target">bigtruck.nl</div><div class="bl-domain">2.918 keywords · 29K traffic</div></div>
+        <div class="bl-why">Publiceert dagelijks waterstof- en e-truck nieuws. Schrijf SWIM-artikel → pitch als aanvulling. Bied expert-quote aan voor hun eigen SWIM-berichtgeving.</div>
+        <div class="bl-effort">Hoge impact</div>
+      </div>
+      <div class="bl-row">
+        <div><div class="bl-target">truckstar.nl</div><div class="bl-domain">Actief · heeft zelf over SWIM gepubliceerd</div></div>
+        <div class="bl-why">Truckstar publiceerde 2 dagen geleden over SWIM. Perfecte haak voor outreach. Zelfde pitch als bigtruck.nl.</div>
+        <div class="bl-effort">Hoge impact</div>
+      </div>
+    </div>
+
+    <!-- Tier 3 -->
+    <div class="bl-tier bl-t3 mt-16">
+      <div class="bl-tier-header">Laag 2B — Homologatie-gids als linkable asset (Week 2–4)</div>
+      <div class="bl-row">
+        <div><div class="bl-target">e-drivers.com</div><div class="bl-domain">Publiceerde over Volta Zero typegoedkeuring</div></div>
+        <div class="bl-why">"Jullie schreven over de EU-typegoedkeuring voor de Volta Zero. Wij hebben de definitieve NL-gids geschreven over dit proces voor ZE zware voertuigen."</div>
+        <div class="bl-effort">1 e-mail</div>
+      </div>
+      <div class="bl-row">
+        <div><div class="bl-target">TÜV.nl</div><div class="bl-domain">Rankt #4 PAA "homologatie"</div></div>
+        <div class="bl-why">Servicepagina zonder educatieve gids. Benaderen als kennisdelingspartner — niet als concurrent. Vraag citatie vanuit hun homologatiepagina.</div>
+        <div class="bl-effort">1 e-mail</div>
+      </div>
+      <div class="bl-row">
+        <div><div class="bl-target">DEKRA.nl</div><div class="bl-domain">Positie #2 "homologatie"</div></div>
+        <div class="bl-why">Idem TÜV — definitieve gids als aanvulling op hun servicepagina. Vraag of ze willen linken vanuit hun homologatie-resourcepagina.</div>
+        <div class="bl-effort">1 e-mail</div>
+      </div>
+      <div class="bl-row">
+        <div><div class="bl-target">Evofenedex + TLN</div><div class="bl-domain">Ranken top-5 voor ZES en subsidies</div></div>
+        <div class="bl-why">Brancheverenigingen die kennispartners vernoemen. Bied bijdragend artikel of expertvermelding aan. Link = direct verwijzingsverkeer van exact doelpubliek.</div>
+        <div class="bl-effort">1–2 e-mails</div>
+      </div>
+      <div class="bl-row">
+        <div><div class="bl-target">Regionale pers (De Gelderlander · Arnhemse Koerier)</div><div class="bl-domain">Nijmegen/Gelderland regio</div></div>
+        <div class="bl-why">Stuur persbericht bij eerste mijlpaal (eerste gecertificeerd ZE-voertuig, bijzondere podcastgast, SWIM-project). Arnhemse Koerier publiceerde recent over ZE bouwmaterieel in Arnhem.</div>
+        <div class="bl-effort">1 persbericht</div>
+      </div>
+      <div class="bl-row">
+        <div><div class="bl-target">Podcasts (Truckstar · OostNL · BNR Zakendoen)</div><div class="bl-domain">Gastoptredens = show notes-links</div></div>
+        <div class="bl-why">Verschijn als gast: IntegratR-specialist als expert over "homologatie voor ZE trucks: wat moeten vervoerders weten?" Show notes bevatten altijd gast-URL. Bonus: direct bereik bij doelpubliek.</div>
+        <div class="bl-effort">Doorlopend</div>
+      </div>
+    </div>
+
+    <!-- Week plan -->
+    <div class="card mt-16">
+      <div class="card-title">8-Weken Actieplan</div>
+      <div class="weekplan">
+        <div class="week-row" style="background:var(--grey-lt); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--grey-mid);">
+          <div>Week</div><div>Actie</div><div>Verwachte links</div><div>Effort</div>
+        </div>
+        <div class="week-row">
+          <div><span class="week-label w1">Week 1</span></div>
+          <div class="week-action">LinkedIn + Google Business + Crunchbase + Dealroom · OostNL contacteren · NL-Automotive aanmelding</div>
+          <div class="week-links">3–5 foundation links</div>
+          <div class="week-effort">± 3 uur</div>
+        </div>
+        <div class="week-row">
+          <div><span class="week-label w1">Week 1</span></div>
+          <div class="week-action">Publiceer SWIM-subsidie-artikel → pitch naar bigtruck.nl + truckstar.nl</div>
+          <div class="week-links">1–2 editorial links</div>
+          <div class="week-effort">1 dag + 1 uur</div>
+        </div>
+        <div class="week-row">
+          <div><span class="week-label w2">Week 2</span></div>
+          <div class="week-action">Gemeente Nijmegen ZE-team e-mailen voor vermelding · RVO kennispartner aanmelding</div>
+          <div class="week-links">1–2 overheidslinks</div>
+          <div class="week-effort">1 uur</div>
+        </div>
+        <div class="week-row">
+          <div><span class="week-label w3">Week 3</span></div>
+          <div class="week-action">Publiceer homologatie pillar-gids → e-mail e-drivers.com, TÜV.nl, DEKRA.nl</div>
+          <div class="week-links">1–3 niche-links</div>
+          <div class="week-effort">2 dagen + 2 uur</div>
+        </div>
+        <div class="week-row">
+          <div><span class="week-label w4">Week 4</span></div>
+          <div class="week-action">Contact Evofenedex + TLN als kennispartner / bijdragend artikel aanbieden</div>
+          <div class="week-links">1–2 verenigingslinks</div>
+          <div class="week-effort">1 uur</div>
+        </div>
+        <div class="week-row">
+          <div><span class="week-label w68">Week 6–8</span></div>
+          <div class="week-action">Persbericht naar De Gelderlander + Arnhemse Koerier bij mijlpaal · podcast-pitches (Truckstar, OostNL, BNR)</div>
+          <div class="week-links">3–6 links</div>
+          <div class="week-effort">3–4 uur</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mt-16" style="background:linear-gradient(135deg,#f0fdfc,#e0f8f7); border:1px solid #a7f3d0;">
+      <div class="card-title" style="color:var(--green-dark);">De Gouden Outreach-Regel</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;font-size:13px;">
+        <div>
+          <div style="font-weight:700;color:var(--green-dark);margin-bottom:6px;">Correct frame</div>
+          <div style="background:white;border-radius:8px;padding:12px;color:var(--text);font-style:italic;">"We hebben [iets nuttigs gepubliceerd] dat relevant is voor jullie lezers/leden — graag delen wij het."</div>
+        </div>
+        <div>
+          <div style="font-weight:700;color:var(--navy);margin-bottom:6px;">Niet doen</div>
+          <div style="background:white;border-radius:8px;padding:12px;color:var(--text-lt);font-style:italic;text-decoration:line-through;">"Kunt u een link toevoegen aan onze website?"</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════ 7. CONCLUSION ═══════ -->
+  <section class="section" id="conclusion">
+    <div class="section-header">
+      <div class="section-icon icon-green"><i data-lucide="target"></i></div>
+      <div>
+        <h2>Conclusie & Strategisch Advies</h2>
+        <div class="section-desc">De kern, de kansen en de aanpak</div>
+      </div>
+    </div>
+
+    <div class="conclusion">
+      <h2>De arena is leeg</h2>
+      <p class="sub">IntegratR heeft een unieke kans om de autoriteit te worden voor ZE-voertuigcertificering in Nederland</p>
+
+      <div class="conclusion-grid">
+        <div class="csf-card">
+          <div class="csf-num">1</div>
+          <div class="csf-title">Los technische blokkades eerst op</div>
+          <div class="csf-text">Zonder werkende sitemap, hreflang-tags en basisschema-markup is al het contentwerk tevergeefs. Google kan de site niet correct indexeren. Dit duurt één werkdag en heeft de allerhoogste prioriteit.</div>
+        </div>
+        <div class="csf-card">
+          <div class="csf-num">2</div>
+          <div class="csf-title">Publiceer snel, publiceer strategisch</div>
+          <div class="csf-text">De eerste twee artikelen (SWIM subsidie + homologatie-gids) zijn het zwaarst. Ze vestigen topicrelevantie, trekken de eerste backlinks aan en stellen IntegratR in staat geciteerd te worden in AI Overviews.</div>
+        </div>
+        <div class="csf-card">
+          <div class="csf-num">3</div>
+          <div class="csf-title">Bouw autoriteit via mensen</div>
+          <div class="csf-text">IntegratR's grootste onderscheid is dat het een team van practitioners is. De specialisten moeten zichtbaar zijn met LinkedIn-profielen, auteursbio's en quote-vermeldingen in de vakpers. E-E-A-T is niet te kopen.</div>
+        </div>
+      </div>
+
+      <div class="timeline-grid">
+        <div class="timeline-item">
+          <div class="timeline-period">Maand 1</div>
+          <div class="timeline-text">Technische fix voltooid. 1–2 artikelen live. 5–10 foundation backlinks. Eerste indexering van content.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-period">Maand 2–3</div>
+          <div class="timeline-text">Eerste rankings voor LOW-comp keywords (homologatie, ZES-zones, waterstof vrachtwagen). 10–20 backlinks totaal.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-period">Maand 4–6</div>
+          <div class="timeline-text">Non-brand organisch verkeer start. Rankings voor MEDIUM-comp zoekwoorden stijgen. Eerste AI Overview-citaties mogelijk.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-period">Maand 6–12</div>
+          <div class="timeline-text">Autoriteit in de niche. Inbound linkverzoeken. IntegratR wordt geciteerd als bron in de sector. Non-brand traffic groeit maand-op-maand.</div>
+        </div>
+      </div>
+
+      <div class="final-message">
+        De huidige staat van de Nederlandse zoekresultaten voor zero-emissie zware voertuigen is een <strong>lege arena</strong>. IntegratR hoeft de grootste speler niet te verslaan — het hoeft alleen als eerste de arena in te lopen en de regels te schrijven. <strong>Begin deze week. Begin met SWIM. Bouw dan de homologatie-gids. Fix de techniek parallel.</strong> De rest volgt.
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <strong>IntegratR.tech — SEO Strategie Rapport</strong> · Opgesteld april 2026 · Data: DataForSEO live · Google NL · Vertrouwelijk document
+</footer>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script>lucide.createIcons();</script>
+</body>
+</html>
