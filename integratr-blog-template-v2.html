@@ -1,0 +1,2233 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homologatie van zero-emissie zware voertuigen — IntegratR</title>
+<meta name="description" content="Een complete gids voor OEM's en integratoren over het homologatieproces voor zero-emissie heavy-duty machines in Nederland en Europa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+/* ─────────────────────────────────────────
+   INTEGRATR BRAND TOKENS
+   Source: integratr.tech screenshots
+───────────────────────────────────────── */
+:root {
+  /* Backgrounds */
+  --bg-page:    #EDF1F9;   /* light blue-grey page bg */
+  --bg-white:   #FFFFFF;
+  --bg-navy:    #0C1A3D;   /* dark navy — hero, footer, dark sections */
+  --bg-navy2:   #0A152F;   /* deeper navy */
+  --bg-card:    #FFFFFF;
+  --bg-light2:  #F4F7FD;   /* slightly lighter than page */
+
+  /* Brand colors */
+  --teal:       #1DD4C0;   /* primary accent — logo, highlights, CTAs */
+  --teal-dark:  #12B5A3;   /* hover */
+  --teal-bg:    rgba(29,212,192,0.10);
+  --teal-bg2:   rgba(29,212,192,0.16);
+
+  --navy:       #0C1A3D;
+  --navy-mid:   #1A2D5A;
+
+  /* Text */
+  --t-dark:     #0C1A3D;   /* main body text on light bg */
+  --t-mid:      #4A5878;
+  --t-light:    #8A97B4;
+  --t-white:    #FFFFFF;
+  --t-white2:   rgba(255,255,255,0.7);
+  --t-white3:   rgba(255,255,255,0.45);
+
+  /* Borders */
+  --border:     rgba(12,26,61,0.10);
+  --border2:    rgba(12,26,61,0.16);
+  --border-teal:rgba(29,212,192,0.30);
+
+  /* Semantic */
+  --green:      #22C55E;
+  --green-bg:   rgba(34,197,94,0.10);
+  --amber:      #F59E0B;
+  --amber-bg:   rgba(245,158,11,0.10);
+  --blue-info:  #3B82F6;
+  --blue-bg:    rgba(59,130,246,0.09);
+
+  /* Radii */
+  --r-sm:  8px;
+  --r:     12px;
+  --r-lg:  18px;
+  --r-xl:  24px;
+  --r-pill:100px;
+
+  /* Fonts */
+  --font:      'Nunito', system-ui, sans-serif;
+  --font-body: 'Nunito Sans', system-ui, sans-serif;
+
+  --nav-h: 72px;
+  --max-w: 1200px;
+}
+
+/* ─────────────────────────────────────────
+   RESET
+───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg-page);
+  color: var(--t-dark);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button { cursor: pointer; font-family: var(--font); }
+
+/* ─────────────────────────────────────────
+   READING PROGRESS
+───────────────────────────────────────── */
+#progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal), #7EEDDE);
+  z-index: 2000;
+  transition: width 0.1s linear;
+}
+
+/* ─────────────────────────────────────────
+   NAVBAR
+───────────────────────────────────────── */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+  box-shadow: 0 1px 12px rgba(12,26,61,0.06);
+}
+
+.nav-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 36px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* Logo */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* Replicate the IntegratR diamond/arrow logo mark in teal */
+.logo-icon {
+  width: 38px; height: 38px;
+  flex-shrink: 0;
+}
+
+.logo-name {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.logo-name-main {
+  font-family: var(--font);
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+}
+
+.logo-name-sub {
+  font-family: var(--font);
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* Nav links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--t-mid);
+  padding: 8px 14px;
+  border-radius: var(--r-sm);
+  transition: color 0.15s, background 0.15s;
+}
+
+.nav-links a:hover {
+  color: var(--navy);
+  background: var(--bg-page);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.lang-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--t-mid);
+  padding: 7px 13px;
+  border-radius: var(--r-pill);
+  border: 1.5px solid var(--border2);
+  background: var(--bg-white);
+  transition: all 0.15s;
+}
+
+.lang-badge:hover { border-color: var(--teal); color: var(--navy); }
+.lang-badge img { width: 16px; border-radius: 2px; }
+
+/* CTA button — IntegratR teal pill style */
+.btn-teal {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  background: var(--teal);
+  color: var(--navy);
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 800;
+  border: none;
+  border-radius: var(--r-pill);
+  transition: all 0.18s;
+  white-space: nowrap;
+}
+
+.btn-teal:hover {
+  background: var(--teal-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(29,212,192,0.30);
+}
+
+.btn-teal svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+.btn-navy {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  background: var(--navy);
+  color: var(--t-white);
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 800;
+  border: none;
+  border-radius: var(--r-pill);
+  transition: all 0.18s;
+  white-space: nowrap;
+}
+
+.btn-navy:hover {
+  background: var(--navy-mid);
+  transform: translateY(-1px);
+}
+
+.btn-navy svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: transparent;
+  color: var(--t-mid);
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 700;
+  border: 1.5px solid var(--border2);
+  border-radius: var(--r-pill);
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.btn-outline:hover {
+  border-color: var(--teal);
+  color: var(--navy);
+}
+
+/* ─────────────────────────────────────────
+   HERO — navy dark, like IntegratR's dark sections
+───────────────────────────────────────── */
+.hero {
+  background: var(--bg-navy);
+  padding-top: calc(var(--nav-h) + 60px);
+  padding-bottom: 64px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle dot grid — matches IntegratR's dark section texture */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+
+/* Teal glow top-right */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -80px; right: -100px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(29,212,192,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 36px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 28px;
+  font-family: var(--font);
+  font-size: 13px;
+  color: var(--t-white3);
+}
+
+.breadcrumb a {
+  color: var(--t-white3);
+  font-weight: 600;
+  transition: color 0.15s;
+}
+
+.breadcrumb a:hover { color: var(--teal); }
+.breadcrumb .sep { opacity: 0.4; }
+.breadcrumb .current { color: var(--t-white2); }
+
+/* Badges row */
+.badges-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+}
+
+.cat-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 6px 14px;
+  border-radius: var(--r-pill);
+  background: var(--teal-bg2);
+  color: var(--teal);
+  border: 1.5px solid var(--border-teal);
+}
+
+.cat-badge svg { width: 10px; height: 10px; }
+
+.ep-badge {
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--t-white3);
+  padding: 6px 13px;
+  border: 1.5px solid rgba(255,255,255,0.15);
+  border-radius: var(--r-pill);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Title */
+.hero-title {
+  font-family: var(--font);
+  font-size: clamp(30px, 4.5vw, 48px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--t-white);
+  margin-bottom: 20px;
+}
+
+.hero-title .teal { color: var(--teal); }
+
+/* Subtitle */
+.hero-sub {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--t-white2);
+  margin-bottom: 32px;
+  max-width: 640px;
+  font-weight: 400;
+}
+
+/* Meta bar */
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+.author-mini {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar-sm {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal), #0097A7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--navy);
+  flex-shrink: 0;
+  border: 2px solid rgba(29,212,192,0.4);
+}
+
+.author-mini-name {
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--t-white);
+}
+
+.author-mini-role {
+  font-size: 12px;
+  color: var(--t-white3);
+}
+
+.meta-sep { width: 1px; height: 20px; background: rgba(255,255,255,0.15); flex-shrink: 0; }
+
+.meta-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--t-white3);
+}
+
+.meta-chip svg { width: 14px; height: 14px; opacity: 0.55; }
+
+/* Hero image strip */
+.hero-img-strip {
+  max-width: 900px;
+  margin: 48px auto 0;
+  padding: 0 36px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-img-box {
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  aspect-ratio: 16/6.5;
+  background: linear-gradient(145deg, #0D2247, #0A1B3D, #0C2050);
+  border: 1px solid rgba(255,255,255,0.10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-img-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(29,212,192,0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.img-placeholder-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255,255,255,0.2);
+  font-size: 13px;
+  position: relative;
+}
+
+.img-placeholder-text svg { width: 44px; height: 44px; opacity: 0.25; }
+
+.hero-caption {
+  margin-top: 10px;
+  font-size: 12.5px;
+  color: var(--t-white3);
+  text-align: center;
+  font-style: italic;
+}
+
+/* ─────────────────────────────────────────
+   TWO-COLUMN LAYOUT
+───────────────────────────────────────── */
+.page-wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 56px 36px;
+  display: grid;
+  grid-template-columns: 1fr 308px;
+  gap: 40px;
+  align-items: start;
+}
+
+/* ─────────────────────────────────────────
+   ARTICLE BODY
+───────────────────────────────────────── */
+.article-main { min-width: 0; }
+
+/* ── Key Takeaways ── */
+.takeaways-box {
+  background: var(--bg-white);
+  border-radius: var(--r-lg);
+  border: 1.5px solid var(--border);
+  padding: 28px 30px;
+  margin-bottom: 36px;
+  box-shadow: 0 2px 16px rgba(12,26,61,0.06);
+}
+
+.takeaways-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  padding-bottom: 16px;
+  border-bottom: 1.5px solid var(--bg-page);
+}
+
+.takeaways-head svg { width: 20px; height: 20px; color: var(--teal); }
+
+.takeaways-label {
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--teal);
+}
+
+.takeaway-list { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+
+.takeaway-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-family: var(--font);
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--t-dark);
+  line-height: 1.5;
+}
+
+.tk-check {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--teal-bg2);
+  border: 2px solid var(--teal);
+  flex-shrink: 0;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tk-check svg { width: 10px; height: 10px; color: var(--teal); }
+
+/* ── Prose ── */
+.prose h2 {
+  font-family: var(--font);
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  color: var(--navy);
+  margin: 52px 0 16px;
+  line-height: 1.2;
+  scroll-margin-top: calc(var(--nav-h) + 24px);
+}
+
+.prose h2:first-child { margin-top: 0; }
+
+.prose h3 {
+  font-family: var(--font);
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--navy);
+  margin: 32px 0 10px;
+  scroll-margin-top: calc(var(--nav-h) + 24px);
+}
+
+.prose p {
+  font-size: 16.5px;
+  line-height: 1.78;
+  color: var(--t-mid);
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+.prose strong { color: var(--t-dark); font-weight: 700; }
+
+.prose a {
+  color: var(--teal-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(29,212,192,0.4);
+  font-weight: 600;
+  transition: text-decoration-color 0.15s;
+}
+
+.prose a:hover { text-decoration-color: var(--teal); }
+
+.prose ul { list-style: none; margin: 0 0 22px 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+
+.prose ul li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 16px;
+  color: var(--t-mid);
+  line-height: 1.6;
+}
+
+.prose ul li::before {
+  content: '';
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--teal);
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+
+.prose ol { list-style: none; margin: 0 0 22px 0; padding: 0; counter-reset: ol; display: flex; flex-direction: column; gap: 10px; }
+
+.prose ol li {
+  counter-increment: ol;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 16px;
+  color: var(--t-mid);
+  line-height: 1.6;
+}
+
+.prose ol li::before {
+  content: counter(ol);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px; height: 26px;
+  min-width: 26px;
+  background: var(--teal-bg2);
+  color: var(--navy);
+  border-radius: 50%;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 900;
+  margin-top: 2px;
+  border: 1.5px solid var(--border-teal);
+}
+
+/* ── Inline CTA ── */
+.inline-cta {
+  background: var(--bg-navy);
+  border-radius: var(--r-lg);
+  padding: 28px 30px;
+  margin: 40px 0;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.inline-cta::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(29,212,192,0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.inline-cta-text { flex: 1; min-width: 180px; position: relative; }
+
+.inline-cta-eyebrow {
+  font-family: var(--font);
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--teal);
+  margin-bottom: 6px;
+}
+
+.inline-cta-title {
+  font-family: var(--font);
+  font-size: 17px;
+  font-weight: 900;
+  color: var(--t-white);
+  line-height: 1.3;
+}
+
+.inline-cta-sub {
+  font-size: 13px;
+  color: var(--t-white3);
+  margin-top: 4px;
+}
+
+/* ── Pullquote ── */
+.pullquote {
+  margin: 40px 0;
+  background: var(--bg-white);
+  border-radius: var(--r-lg);
+  border-left: 5px solid var(--teal);
+  padding: 30px 32px;
+  box-shadow: 0 2px 16px rgba(12,26,61,0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.pullquote::before {
+  content: '"';
+  position: absolute;
+  top: 10px; right: 24px;
+  font-size: 100px;
+  line-height: 1;
+  color: var(--teal);
+  opacity: 0.10;
+  font-family: Georgia, serif;
+  pointer-events: none;
+}
+
+.pq-text {
+  font-family: var(--font);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.55;
+  color: var(--navy);
+  font-style: italic;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.pq-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pq-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--bg-page);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--navy);
+  flex-shrink: 0;
+  border: 1.5px solid var(--border2);
+}
+
+.pq-name { font-family: var(--font); font-size: 14px; font-weight: 800; color: var(--navy); }
+.pq-role { font-size: 12px; color: var(--t-light); }
+
+/* ── Info card ── */
+.info-card {
+  background: var(--teal-bg);
+  border: 1.5px solid var(--border-teal);
+  border-radius: var(--r-lg);
+  padding: 22px 24px;
+  margin: 32px 0;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.info-icon {
+  width: 36px; height: 36px;
+  background: rgba(29,212,192,0.18);
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.info-icon svg { width: 18px; height: 18px; color: var(--navy); }
+
+.info-label {
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--teal-dark);
+  margin-bottom: 5px;
+}
+
+.info-text {
+  font-size: 14.5px;
+  color: var(--t-dark);
+  line-height: 1.6;
+}
+
+/* ── Table ── */
+.tbl-wrap {
+  overflow-x: auto;
+  margin: 28px 0;
+  border-radius: var(--r-lg);
+  border: 1.5px solid var(--border);
+  background: var(--bg-white);
+  box-shadow: 0 2px 12px rgba(12,26,61,0.05);
+}
+
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+.tbl thead tr {
+  background: var(--navy);
+}
+
+.tbl th {
+  padding: 13px 16px;
+  text-align: left;
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.7);
+  white-space: nowrap;
+}
+
+.tbl th:first-child { border-radius: var(--r-lg) 0 0 0; }
+.tbl th:last-child { border-radius: 0 var(--r-lg) 0 0; }
+
+.tbl td {
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--t-mid);
+  vertical-align: middle;
+}
+
+.tbl tr:last-child td { border-bottom: none; }
+.tbl tbody tr:hover td { background: var(--bg-page); }
+.tbl td.bold { color: var(--t-dark); font-family: var(--font); font-weight: 800; }
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: var(--r-pill);
+}
+
+.status-green { background: var(--green-bg); color: #16A34A; }
+.status-teal  { background: var(--teal-bg2); color: var(--teal-dark); }
+.status-amber { background: var(--amber-bg); color: #B45309; }
+
+/* ── Tags + Share ── */
+.article-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 26px 0;
+  border-top: 1.5px solid var(--border);
+  border-bottom: 1.5px solid var(--border);
+  margin-top: 48px;
+}
+
+.tags { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.tag {
+  font-family: var(--font);
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: var(--r-pill);
+  border: 1.5px solid var(--border2);
+  color: var(--t-mid);
+  background: var(--bg-white);
+  transition: all 0.15s;
+}
+
+.tag:hover { border-color: var(--teal); color: var(--navy); background: var(--teal-bg); }
+
+.share-group { display: flex; align-items: center; gap: 8px; }
+.share-label { font-family: var(--font); font-size: 12.5px; font-weight: 700; color: var(--t-light); }
+
+.share-btn {
+  width: 36px; height: 36px;
+  border-radius: var(--r-sm);
+  border: 1.5px solid var(--border2);
+  background: var(--bg-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--t-mid);
+  transition: all 0.15s;
+}
+
+.share-btn:hover { border-color: var(--teal); color: var(--navy); background: var(--teal-bg); }
+.share-btn svg { width: 15px; height: 15px; }
+
+/* ─────────────────────────────────────────
+   AUTHOR CARDS — EEAT
+───────────────────────────────────────── */
+.eeat-section { margin-top: 48px; display: flex; flex-direction: column; gap: 6px; }
+
+.eeat-label {
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--t-light);
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.author-card {
+  background: var(--bg-white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 28px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  box-shadow: 0 2px 16px rgba(12,26,61,0.06);
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.author-card:hover {
+  box-shadow: 0 6px 28px rgba(12,26,61,0.10);
+  border-color: var(--border-teal);
+}
+
+/* Guest card has teal left accent */
+.author-card.guest {
+  border-left: 4px solid var(--teal);
+  background: linear-gradient(135deg, var(--teal-bg) 0%, var(--bg-white) 45%);
+}
+
+.author-avatar {
+  width: 76px; height: 76px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font);
+  font-size: 26px;
+  font-weight: 900;
+  position: relative;
+}
+
+.av-author {
+  background: linear-gradient(135deg, var(--teal), #0EB8A8);
+  color: var(--navy);
+  border: 3px solid rgba(29,212,192,0.25);
+}
+
+.av-guest {
+  background: linear-gradient(135deg, #EDF1F9, #D4DCEE);
+  color: var(--navy);
+  border: 3px solid var(--border2);
+  font-size: 24px;
+}
+
+.av-dot {
+  position: absolute;
+  bottom: 3px; right: 3px;
+  width: 15px; height: 15px;
+  border-radius: 50%;
+  background: var(--green);
+  border: 2.5px solid var(--bg-white);
+}
+
+.author-content { flex: 1; min-width: 0; }
+
+.author-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.author-role-badge {
+  font-family: var(--font);
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 3px 10px;
+  border-radius: var(--r-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.badge-author { background: var(--teal-bg2); color: var(--teal-dark); border: 1px solid var(--border-teal); }
+.badge-guest  { background: var(--bg-page); color: var(--t-mid); border: 1px solid var(--border2); }
+
+.author-name {
+  font-family: var(--font);
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--navy);
+  margin-bottom: 3px;
+  letter-spacing: -0.015em;
+}
+
+.author-title {
+  font-family: var(--font);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--t-mid);
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
+.author-title strong { color: var(--teal-dark); }
+
+.author-bio {
+  font-size: 14px;
+  color: var(--t-mid);
+  line-height: 1.65;
+  margin-bottom: 16px;
+}
+
+/* Expertise chips */
+.chips { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 18px; }
+
+.chip {
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--r-pill);
+  background: var(--bg-page);
+  color: var(--t-dark);
+  border: 1.5px solid var(--border);
+}
+
+/* Social links */
+.social-links { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: var(--r-pill);
+  border: 1.5px solid var(--border2);
+  color: var(--t-mid);
+  background: var(--bg-white);
+  transition: all 0.15s;
+}
+
+.social-link:hover { border-color: var(--border-teal); color: var(--navy); background: var(--teal-bg); }
+
+.social-link.li:hover { border-color: #0A66C2; color: #0A66C2; background: rgba(10,102,194,0.07); }
+
+.social-link svg { width: 14px; height: 14px; }
+
+/* ─────────────────────────────────────────
+   SIDEBAR
+───────────────────────────────────────── */
+.sidebar {
+  position: sticky;
+  top: calc(var(--nav-h) + 20px);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.s-card {
+  background: var(--bg-white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 22px;
+  box-shadow: 0 2px 12px rgba(12,26,61,0.05);
+}
+
+.s-label {
+  font-family: var(--font);
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--t-light);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.s-label svg { width: 12px; height: 12px; }
+
+/* TOC */
+.toc-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+
+.toc-list li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--t-mid);
+  padding: 8px 10px;
+  border-radius: var(--r-sm);
+  transition: all 0.15s;
+  line-height: 1.35;
+}
+
+.toc-list li a:hover { background: var(--bg-page); color: var(--navy); }
+
+.toc-list li a.active {
+  background: var(--teal-bg2);
+  color: var(--navy);
+}
+
+.toc-list li a.active .toc-n { color: var(--teal); }
+
+.toc-n {
+  font-family: var(--font);
+  font-size: 10px;
+  font-weight: 900;
+  color: var(--t-light);
+  min-width: 18px;
+  flex-shrink: 0;
+}
+
+/* ── Sidebar CTA — navy with teal ── */
+.s-cta {
+  background: var(--bg-navy);
+  border: 1.5px solid rgba(255,255,255,0.08);
+  border-radius: var(--r-xl);
+  padding: 26px 22px;
+  position: relative;
+  overflow: hidden;
+}
+
+.s-cta::before {
+  content: '';
+  position: absolute;
+  top: -50px; right: -50px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, rgba(29,212,192,0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.s-cta-icon {
+  width: 42px; height: 42px;
+  background: var(--teal-bg2);
+  border-radius: var(--r);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  border: 1.5px solid var(--border-teal);
+}
+
+.s-cta-icon svg { width: 20px; height: 20px; color: var(--teal); }
+
+.s-cta-title {
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--t-white);
+  margin-bottom: 8px;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  position: relative;
+}
+
+.s-cta-desc {
+  font-size: 13px;
+  color: var(--t-white3);
+  line-height: 1.55;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.btn-cta-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  background: var(--teal);
+  color: var(--navy);
+  font-family: var(--font);
+  font-size: 13.5px;
+  font-weight: 900;
+  border: none;
+  border-radius: var(--r-pill);
+  transition: all 0.18s;
+}
+
+.btn-cta-side:hover {
+  background: var(--teal-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(29,212,192,0.28);
+}
+
+.btn-cta-side svg { width: 14px; height: 14px; }
+
+.btn-ghost-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  color: var(--t-white2);
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 700;
+  border: 1.5px solid rgba(255,255,255,0.15);
+  border-radius: var(--r-pill);
+  transition: all 0.15s;
+  margin-top: 8px;
+  position: relative;
+}
+
+.btn-ghost-side:hover { border-color: rgba(255,255,255,0.35); color: var(--t-white); }
+
+/* Podcast player */
+.player {
+  background: var(--bg-page);
+  border-radius: var(--r);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 14px;
+  border: 1.5px solid var(--border);
+}
+
+.play-btn {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--navy);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.18s;
+}
+
+.play-btn:hover { background: var(--teal); }
+.play-btn:hover svg { color: var(--navy); }
+.play-btn svg { width: 14px; height: 14px; color: var(--t-white); margin-left: 2px; }
+
+.player-info { flex: 1; min-width: 0; }
+
+.player-ep {
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--navy);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-meta { font-size: 12px; color: var(--t-light); }
+
+.platforms { display: flex; flex-wrap: wrap; gap: 7px; }
+
+.pf-badge {
+  font-family: var(--font);
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--r-pill);
+  border: 1.5px solid var(--border2);
+  color: var(--t-mid);
+  background: var(--bg-white);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.15s;
+}
+
+.pf-badge:hover { border-color: var(--teal); color: var(--navy); }
+.pf-badge svg { width: 12px; height: 12px; }
+
+/* Meta info list */
+.meta-list { display: flex; flex-direction: column; gap: 0; }
+.meta-row-s {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.meta-row-s:last-child { border-bottom: none; padding-bottom: 0; }
+.meta-key { font-family: var(--font); font-weight: 700; color: var(--t-light); font-size: 12px; }
+.meta-val { font-family: var(--font); font-weight: 800; color: var(--t-dark); font-size: 13px; }
+
+/* ─────────────────────────────────────────
+   RELATED ARTICLES
+───────────────────────────────────────── */
+.related {
+  background: var(--bg-white);
+  border-top: 1.5px solid var(--border);
+  padding: 64px 36px;
+}
+
+.related-inner { max-width: var(--max-w); margin: 0 auto; }
+
+.section-hd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.section-hd-title {
+  font-family: var(--font);
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+}
+
+.view-all {
+  font-family: var(--font);
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--teal-dark);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 16px;
+  border-radius: var(--r-pill);
+  border: 1.5px solid var(--border-teal);
+  background: var(--teal-bg);
+  transition: all 0.15s;
+}
+
+.view-all:hover { background: var(--teal-bg2); }
+.view-all svg { width: 13px; height: 13px; }
+
+.related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+.r-card {
+  background: var(--bg-page);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.r-card:hover {
+  border-color: var(--border-teal);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(12,26,61,0.10);
+}
+
+.r-thumb {
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.r-thumb::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(29,212,192,0.08) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.r-thumb svg { width: 32px; height: 32px; color: rgba(255,255,255,0.15); position: relative; }
+
+.r-body { padding: 18px 20px; flex: 1; display: flex; flex-direction: column; }
+
+.r-cat {
+  font-family: var(--font);
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--teal-dark);
+  margin-bottom: 8px;
+}
+
+.r-title {
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1.35;
+  margin-bottom: 12px;
+  flex: 1;
+}
+
+.r-meta {
+  font-size: 12px;
+  color: var(--t-light);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-family: var(--font);
+  font-weight: 600;
+}
+
+/* ─────────────────────────────────────────
+   BOTTOM CTA BANNER
+───────────────────────────────────────── */
+.bottom-cta {
+  background: var(--bg-navy);
+  padding: 80px 36px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dot grid texture matching the site's dark sections */
+.bottom-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.bottom-cta::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 600px; height: 300px;
+  background: radial-gradient(ellipse, rgba(29,212,192,0.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.btm-inner {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.btm-eyebrow {
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--teal);
+  margin-bottom: 16px;
+}
+
+.btm-title {
+  font-family: var(--font);
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 900;
+  color: var(--t-white);
+  margin-bottom: 14px;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.btm-sub {
+  font-size: 16px;
+  color: var(--t-white2);
+  margin-bottom: 36px;
+  line-height: 1.6;
+}
+
+.btm-btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-teal-lg {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 15px 30px;
+  background: var(--teal);
+  color: var(--navy);
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 900;
+  border: none;
+  border-radius: var(--r-pill);
+  transition: all 0.18s;
+}
+
+.btn-teal-lg:hover {
+  background: var(--teal-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(29,212,192,0.30);
+}
+
+.btn-teal-lg svg { width: 16px; height: 16px; }
+
+.btn-ghost-lg {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: transparent;
+  color: var(--t-white2);
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 700;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  border-radius: var(--r-pill);
+  transition: all 0.15s;
+}
+
+.btn-ghost-lg:hover { border-color: rgba(255,255,255,0.45); color: var(--t-white); }
+
+/* ─────────────────────────────────────────
+   FOOTER
+───────────────────────────────────────── */
+.footer {
+  background: var(--bg-navy2);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 36px 36px;
+}
+
+.footer-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-copy { font-size: 13px; font-family: var(--font); font-weight: 600; color: var(--t-white3); }
+
+.footer-links { list-style: none; display: flex; gap: 20px; }
+.footer-links a { font-family: var(--font); font-size: 13px; font-weight: 700; color: var(--t-white3); transition: color 0.15s; }
+.footer-links a:hover { color: var(--teal); }
+
+/* ─────────────────────────────────────────
+   SCROLL TOP
+───────────────────────────────────────── */
+#scroll-top {
+  position: fixed;
+  bottom: 28px; right: 28px;
+  width: 44px; height: 44px;
+  background: var(--bg-white);
+  border: 1.5px solid var(--border2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.2s;
+  z-index: 800;
+  box-shadow: 0 4px 16px rgba(12,26,61,0.12);
+}
+
+#scroll-top.show { opacity: 1; transform: translateY(0); }
+#scroll-top:hover { background: var(--navy); border-color: var(--navy); }
+#scroll-top svg { width: 16px; height: 16px; color: var(--t-mid); }
+#scroll-top:hover svg { color: var(--t-white); }
+
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- ─── NAVBAR ─── -->
+<nav class="navbar">
+  <div class="nav-inner">
+
+    <a href="/" class="nav-logo">
+      <!-- IntegratR logo mark — teal diamond/arrow icon -->
+      <svg class="logo-icon" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="21" cy="21" r="21" fill="#1DD4C0" opacity="0.12"/>
+        <path d="M14 11L22 11C26.4183 11 30 14.5817 30 19C30 23.4183 26.4183 27 22 27H18L26 31H14V11Z" fill="#1DD4C0"/>
+        <circle cx="21" cy="19" r="3" fill="#0C1A3D"/>
+      </svg>
+      <div class="logo-name">
+        <span class="logo-name-main">IntegratR</span>
+        <span class="logo-name-sub">Innovation Campus</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#">Why IntegratR</a></li>
+      <li><a href="#">World-Class facilities</a></li>
+      <li><a href="#">Ecosystem</a></li>
+      <li><a href="#">Partners</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="#" class="lang-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        NL
+      </a>
+      <button class="btn-teal">
+        Get in contact
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<header class="hero">
+  <div class="hero-inner">
+
+    <nav class="breadcrumb">
+      <a href="#">Home</a>
+      <span class="sep">›</span>
+      <a href="#">Kennisbank</a>
+      <span class="sep">›</span>
+      <a href="#">Certificering</a>
+      <span class="sep">›</span>
+      <span class="current">Homologatie ZE-voertuigen</span>
+    </nav>
+
+    <div class="badges-row">
+      <span class="cat-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Certificering
+      </span>
+      <span class="ep-badge">🎙 Podcast · Aflevering #03</span>
+    </div>
+
+    <h1 class="hero-title">
+      Homologatie van <span class="teal">zero-emissie</span> zware voertuigen: de complete gids voor OEM's
+    </h1>
+
+    <p class="hero-sub">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Alles wat OEM's en systeemintegratoren moeten weten over het Europese typegoedkeuringsproces voor zero-emissie heavy-duty machines — van prototype tot gecertificeerde serieproductie.
+    </p>
+
+    <div class="hero-meta">
+      <div class="author-mini">
+        <div class="avatar-sm">MV</div>
+        <div>
+          <div class="author-mini-name">Marieke van der Berg</div>
+          <div class="author-mini-role">Head of Partnerships · IntegratR</div>
+        </div>
+      </div>
+      <div class="meta-sep"></div>
+      <div class="meta-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        14 april 2026
+      </div>
+      <div class="meta-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        9 min lezen
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero image -->
+  <div class="hero-img-strip">
+    <div class="hero-img-box">
+      <div class="img-placeholder-text">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        Featured image — 1200 × 520 px
+      </div>
+    </div>
+    <p class="hero-caption">Zero-emissie heavy-duty materieel in testfase op de IntegratR campus, Nijmegen. © IntegratR 2026</p>
+  </div>
+</header>
+
+<!-- ─── CONTENT + SIDEBAR ─── -->
+<div class="page-wrap">
+
+  <!-- ── ARTICLE ── -->
+  <main class="article-main">
+
+    <!-- Key Takeaways -->
+    <div class="takeaways-box">
+      <div class="takeaways-head">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <span class="takeaways-label">Wat je meeneemt uit dit artikel</span>
+      </div>
+      <ul class="takeaway-list">
+        <li>
+          <span class="tk-check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          Homologatie is het grootste knelpunt in de marktintroductie van zero-emissie zware voertuigen — niet de technologie zelf.
+        </li>
+        <li>
+          <span class="tk-check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          Het EU WVTA-proces duurt gemiddeld 18–36 maanden voor nieuwe aandrijflijntypes.
+        </li>
+        <li>
+          <span class="tk-check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          OEM's die certificering vroeg integreren, halen hun time-to-market gemiddeld 40% omlaag.
+        </li>
+        <li>
+          <span class="tk-check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          EMC-testing voor grote off-road machines vereist gespecialiseerde faciliteiten — in Europa zijn er minder dan tien.
+        </li>
+        <li>
+          <span class="tk-check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          IntegratR biedt een geïntegreerd traject van prototype naar gecertificeerde serieproductie op één campus.
+        </li>
+      </ul>
+    </div>
+
+    <!-- Article prose -->
+    <article class="prose">
+
+      <h2 id="inleiding">Waarom homologatie de bottleneck is — niet de technologie</h2>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <strong>De technologie voor zero-emissie zware aandrijflijnen bestaat — maar het certificeringstraject maakt of breekt de marktintroductie.</strong></p>
+
+      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque.</p>
+
+      <!-- Inline CTA #1 — subtiel maar in het zicht -->
+      <div class="inline-cta">
+        <div class="inline-cta-text">
+          <div class="inline-cta-eyebrow">IntegratR Campus · Nijmegen</div>
+          <div class="inline-cta-title">Hoe IntegratR het certificeringstraject verkort</div>
+          <div class="inline-cta-sub">EMC-testfaciliteit, prototype-validatie en certificeringsondersteuning onder één dak.</div>
+        </div>
+        <button class="btn-teal" style="flex-shrink:0">
+          Bekijk de campus
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </div>
+
+      <h2 id="wvta">Het EU WVTA-proces uitgelegd</h2>
+
+      <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt.</p>
+
+      <h3 id="fasen">De vier fasen van typegoedkeuring</h3>
+
+      <ol>
+        <li><strong>Pre-compliance fase:</strong> Vroegtijdige beoordeling van het voertuigconcept. Dit is het moment waarop IntegratR instapt — vóór de engineering-keuzes zijn vastgezet.</li>
+        <li><strong>Technische documentatie:</strong> Voorbereiding van het dossier conform Verordening (EU) 2018/858. Inclusief EMC-test, veiligheidsanalyse en conformiteitsverklaring.</li>
+        <li><strong>IVA of NSSTA:</strong> Voor kleinere series of prototype-validatie. Schakelmoment richting volledige typegoedkeuring.</li>
+        <li><strong>Volledige WVTA:</strong> EU-brede markttoegang. Vereist Conformity of Production bij de fabrikant.</li>
+      </ol>
+
+      <!-- Data table -->
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th>Fase</th>
+              <th>Doorlooptijd</th>
+              <th>Vereiste faciliteit</th>
+              <th>Status IntegratR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="bold">Pre-compliance</td>
+              <td>2–4 maanden</td>
+              <td>Testlaboratorium + advies</td>
+              <td><span class="status status-green">✓ Beschikbaar</span></td>
+            </tr>
+            <tr>
+              <td class="bold">EMC-testing</td>
+              <td>4–8 weken</td>
+              <td>Geaccrediteerde EMC-kamer (groot)</td>
+              <td><span class="status status-green">✓ Op campus</span></td>
+            </tr>
+            <tr>
+              <td class="bold">IVA / NSSTA</td>
+              <td>3–6 maanden</td>
+              <td>RDW-technische dienst</td>
+              <td><span class="status status-teal">Via partner</span></td>
+            </tr>
+            <tr>
+              <td class="bold">Volledige WVTA</td>
+              <td>12–24 maanden</td>
+              <td>Notified body + CoP-systeem</td>
+              <td><span class="status status-amber">In opbouw</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="emc">EMC-testing voor zware off-road machines</h2>
+
+      <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident similique sunt in culpa qui officia deserunt mollitia animi.</p>
+
+      <div class="info-card">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div>
+          <div class="info-label">Wist je dat?</div>
+          <div class="info-text">IntegratR beschikt over een van de weinige EMC-testfaciliteiten in Europa die groot genoeg zijn voor volledige zware off-road machines — inclusief graafmachines en havenvoertuigen tot 40 ton. De testhal is direct toegankelijk via de RoRo-kade in Nijmegen.</div>
+        </div>
+      </div>
+
+      <ul>
+        <li>Tempore autem quibusdam et aut officiis debitis rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint.</li>
+        <li>Non recusandae itaque earum rerum hic tenetur a sapiente delectus ut aut reiciendis voluptatibus maiores.</li>
+        <li>Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</li>
+        <li>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</li>
+      </ul>
+
+      <!-- Pullquote / Expert citaat -->
+      <div class="pullquote">
+        <p class="pq-text">
+          "Dit kun je niet alleen. Zonder samenwerking ben je te laat. IntegratR is voor ons cruciaal: het versnelt de time-to-market en helpt ons te voldoen aan complexe regelgeving, zoals het testen van elektromagnetische compatibiliteit."
+        </p>
+        <div class="pq-author">
+          <div class="pq-avatar">LK</div>
+          <div>
+            <div class="pq-name">Lars Kool</div>
+            <div class="pq-role">CTO · Urban Mobility Systems (DEUTZ)</div>
+          </div>
+        </div>
+      </div>
+
+      <h2 id="integratr">Hoe IntegratR het traject versnelt</h2>
+
+      <p>Temporibus autem quibusdam et aut officiis debitis et rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores.</p>
+
+      <!-- Inline CTA #2 — podcast -->
+      <div class="inline-cta">
+        <div class="inline-cta-text">
+          <div class="inline-cta-eyebrow">Podcast · Aflevering #03</div>
+          <div class="inline-cta-title">Luister het gesprek met Lars Kool, CTO Urban Mobility Systems</div>
+          <div class="inline-cta-sub">50 min · Spotify · Apple Podcasts · Podimo</div>
+        </div>
+        <button class="btn-navy" style="flex-shrink:0">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Luister nu
+        </button>
+      </div>
+
+      <h2 id="conclusie">Conclusie</h2>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+
+      <p><strong>IntegratR biedt een unieke combinatie van testinfrastructuur, certificeringskennis en industrieel netwerk die OEM's in staat stelt sneller en met minder risico naar de markt te gaan.</strong> De lege arena in de Nederlandse zoekresultaten voor zero-emissie certificering staat open — en IntegratR heeft de autoriteit om die te vullen.</p>
+
+    </article>
+
+    <!-- Tags + Share -->
+    <div class="article-foot">
+      <div class="tags">
+        <a href="#" class="tag">Homologatie</a>
+        <a href="#" class="tag">Zero-emissie</a>
+        <a href="#" class="tag">EMC-testing</a>
+        <a href="#" class="tag">OEM</a>
+        <a href="#" class="tag">Typegoedkeuring</a>
+        <a href="#" class="tag">WVTA</a>
+      </div>
+      <div class="share-group">
+        <span class="share-label">Deel:</span>
+        <button class="share-btn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </button>
+        <button class="share-btn" title="X / Twitter">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </button>
+        <button class="share-btn" title="Kopieer link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ─── EEAT: AUTHOR CARDS ─── -->
+    <div class="eeat-section">
+
+      <div class="eeat-label">Over de auteur</div>
+
+      <div class="author-card">
+        <div class="author-avatar av-author">
+          MV
+          <div class="av-dot"></div>
+        </div>
+        <div class="author-content">
+          <div class="author-badge-row">
+            <span class="author-role-badge badge-author">✍ IntegratR Redactie</span>
+          </div>
+          <div class="author-name">Marieke van der Berg</div>
+          <div class="author-title">Head of Partnerships &amp; Communications · <strong>IntegratR</strong></div>
+          <p class="author-bio">Marieke heeft meer dan 10 jaar ervaring in de maakindustrie en energietransitie. Bij IntegratR is zij verantwoordelijk voor de samenwerking met OEM's, kennisinstellingen en certificeringsinstanties. Ze schrijft over de praktische kant van zero-emissie innovatie voor technische beslissers in de sector.</p>
+          <div class="chips">
+            <span class="chip">Zero-emissie strategie</span>
+            <span class="chip">OEM-partnerships</span>
+            <span class="chip">Industriële transitie</span>
+            <span class="chip">B2B communicatie</span>
+          </div>
+          <div class="social-links">
+            <a href="#" class="social-link li">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </a>
+            <a href="#" class="social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              E-mail
+            </a>
+            <a href="#" class="social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              Alle artikelen
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="eeat-label" style="margin-top:12px">Podcast gast &amp; expert</div>
+
+      <div class="author-card guest">
+        <div class="author-avatar av-guest">LK</div>
+        <div class="author-content">
+          <div class="author-badge-row">
+            <span class="author-role-badge badge-guest">🎙 Podcast Gast · Afl. #03</span>
+          </div>
+          <div class="author-name">Lars Kool</div>
+          <div class="author-title">CTO · <strong>Urban Mobility Systems</strong> (een DEUTZ bedrijf)</div>
+          <p class="author-bio">Lars Kool is Chief Technology Officer bij Urban Mobility Systems (UMS) en kernpartner van IntegratR. Met een achtergrond in elektrische aandrijfsystemen voor zware en speciale voertuigen begeleidt hij DEUTZ's zero-emissie elektrificatiestrategie voor de bouw- en logistieksector.</p>
+          <div class="chips">
+            <span class="chip">Elektrische aandrijflijnen</span>
+            <span class="chip">Systeemintegratie</span>
+            <span class="chip">Zero-emissie voertuigen</span>
+            <span class="chip">R&amp;D strategie</span>
+          </div>
+          <div class="social-links">
+            <a href="#" class="social-link li">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </a>
+            <a href="#" class="social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Urban Mobility Systems
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+
+    <!-- Table of Contents -->
+    <div class="s-card">
+      <div class="s-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        Inhoudsopgave
+      </div>
+      <ul class="toc-list">
+        <li><a href="#inleiding" class="active"><span class="toc-n">01</span>Waarom homologatie de bottleneck is</a></li>
+        <li><a href="#wvta"><span class="toc-n">02</span>Het EU WVTA-proces uitgelegd</a></li>
+        <li><a href="#fasen"><span class="toc-n">03</span>De vier fasen van typegoedkeuring</a></li>
+        <li><a href="#emc"><span class="toc-n">04</span>EMC-testing voor zware machines</a></li>
+        <li><a href="#integratr"><span class="toc-n">05</span>Hoe IntegratR het versnelt</a></li>
+        <li><a href="#conclusie"><span class="toc-n">06</span>Conclusie</a></li>
+      </ul>
+    </div>
+
+    <!-- Primary CTA — navy + teal knop -->
+    <div class="s-cta">
+      <div class="s-cta-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="s-cta-title">Klaar voor het certificeringstraject?</div>
+      <div class="s-cta-desc">IntegratR begeleidt OEM's van prototype naar gecertificeerde serieproductie. Alles onder één dak in Nijmegen.</div>
+      <button class="btn-cta-side">
+        Get in contact
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+      <button class="btn-ghost-side">Bekijk de campus</button>
+    </div>
+
+    <!-- Podcast embed -->
+    <div class="s-card">
+      <div class="s-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+        Podcast aflevering
+      </div>
+      <div class="player">
+        <button class="play-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </button>
+        <div class="player-info">
+          <div class="player-ep">Afl. #03 — Lars Kool, UMS</div>
+          <div class="player-meta">50:14 · Certificering &amp; integratie</div>
+        </div>
+      </div>
+      <div class="platforms">
+        <a href="#" class="pf-badge">
+          <svg viewBox="0 0 168 168" fill="currentColor" width="12" height="12"><path d="M84 0C37.6 0 0 37.6 0 84s37.6 84 84 84 84-37.6 84-84S130.4 0 84 0zm38.5 121.2c-1.5 2.5-4.8 3.3-7.3 1.8-20-12.2-45.2-15-74.9-8.2-2.9.7-5.7-1.1-6.4-4-.7-2.9 1.1-5.7 4-6.4 32.5-7.4 60.3-4.2 82.8 9.5 2.5 1.5 3.3 4.8 1.8 7.3zm10.3-22.8c-1.9 3.1-5.9 4-9 2.1-22.9-14.1-57.8-18.2-84.9-9.9-3.5 1.1-7.2-.9-8.3-4.4-1.1-3.5.9-7.2 4.4-8.3 30.9-9.4 69.3-4.8 95.7 11.4 3.1 1.9 4 5.9 2.1 9.1zm.9-23.7C107.4 56.4 59 54.9 30.9 63.9c-4.1 1.3-8.5-.9-9.8-5.1-1.3-4.1.9-8.5 5.1-9.8 32.5-9.9 86.5-8 120.6 13.1 3.7 2.2 4.9 7 2.7 10.7-2.2 3.7-7 4.9-10.7 2.7z"/></svg>
+          Spotify
+        </a>
+        <a href="#" class="pf-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2z"/><path d="M8 12l2 2 4-4"/></svg>
+          Apple
+        </a>
+        <a href="#" class="pf-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          Podimo
+        </a>
+      </div>
+    </div>
+
+    <!-- Article info -->
+    <div class="s-card">
+      <div class="s-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Artikel info
+      </div>
+      <div class="meta-list">
+        <div class="meta-row-s"><span class="meta-key">Gepubliceerd</span><span class="meta-val">14 apr 2026</span></div>
+        <div class="meta-row-s"><span class="meta-key">Bijgewerkt</span><span class="meta-val">14 apr 2026</span></div>
+        <div class="meta-row-s"><span class="meta-key">Leestijd</span><span class="meta-val">9 minuten</span></div>
+        <div class="meta-row-s"><span class="meta-key">Cluster</span><span class="meta-val">Certificering</span></div>
+        <div class="meta-row-s"><span class="meta-key">Databron</span><span class="meta-val">DataForSEO</span></div>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<!-- ─── RELATED ARTICLES ─── -->
+<section class="related">
+  <div class="related-inner">
+    <div class="section-hd">
+      <h2 class="section-hd-title">Gerelateerde artikelen</h2>
+      <a href="#" class="view-all">
+        Kennisbank bekijken
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+    <div class="related-grid">
+      <a href="#" class="r-card">
+        <div class="r-thumb">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </div>
+        <div class="r-body">
+          <div class="r-cat">Subsidies</div>
+          <div class="r-title">SWIM subsidie 2026: wat betekent dit voor voertuigintegratoren en OEM's?</div>
+          <div class="r-meta"><span>8 min lezen</span><span>·</span><span>1 april 2026</span></div>
+        </div>
+      </a>
+      <a href="#" class="r-card">
+        <div class="r-thumb">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </div>
+        <div class="r-body">
+          <div class="r-cat">Waterstof</div>
+          <div class="r-title">Waterstof vrachtwagen vs. elektrisch: technologie, certificering, voor- en nadelen</div>
+          <div class="r-meta"><span>11 min lezen</span><span>·</span><span>22 maart 2026</span></div>
+        </div>
+      </a>
+      <a href="#" class="r-card">
+        <div class="r-thumb">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </div>
+        <div class="r-body">
+          <div class="r-cat">Ecosysteem</div>
+          <div class="r-title">Van prototype naar gecertificeerde serieproductie: het IntegratR-traject</div>
+          <div class="r-meta"><span>6 min lezen</span><span>·</span><span>8 februari 2026</span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── BOTTOM CTA ─── -->
+<section class="bottom-cta">
+  <div class="btm-inner">
+    <div class="btm-eyebrow">IntegratR Innovation Campus · Nijmegen</div>
+    <h2 class="btm-title">Klaar om uw zero-emissie innovatie te versnellen?</h2>
+    <p class="btm-sub">Sluit u aan bij OEM's, kennisinstellingen en certificeringspartners op de IntegratR campus. Van prototype naar gecertificeerde serieproductie — onder één dak.</p>
+    <div class="btm-btns">
+      <button class="btn-teal-lg">
+        Get in contact
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+      <button class="btn-ghost-lg">Bekijk onze facilities</button>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="nav-logo">
+      <svg class="logo-icon" viewBox="0 0 42 42" fill="none" style="width:28px;height:28px">
+        <circle cx="21" cy="21" r="21" fill="#1DD4C0" opacity="0.12"/>
+        <path d="M14 11L22 11C26.4183 11 30 14.5817 30 19C30 23.4183 26.4183 27 22 27H18L26 31H14V11Z" fill="#1DD4C0"/>
+        <circle cx="21" cy="19" r="3" fill="#0C1A3D" opacity="0.5"/>
+      </svg>
+      <div class="logo-name">
+        <span class="logo-name-main" style="font-size:16px;color:rgba(255,255,255,0.8)">IntegratR</span>
+        <span class="logo-name-sub">Innovation Campus</span>
+      </div>
+    </div>
+    <span class="footer-copy">© 2026 Coöperatief IntegratR U.A. · Nijmegen</span>
+    <ul class="footer-links">
+      <li><a href="#">Privacy</a></li>
+      <li><a href="#">Cookies</a></li>
+      <li><a href="#">Kennisbank</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<!-- Schema.org markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Homologatie van zero-emissie zware voertuigen: de complete gids voor OEM's",
+  "description": "Een complete gids voor OEM's en systeemintegratoren over het EU typegoedkeuringsproces voor zero-emissie heavy-duty voertuigen.",
+  "datePublished": "2026-04-14",
+  "dateModified": "2026-04-14",
+  "author": {
+    "@type": "Person",
+    "name": "Marieke van der Berg",
+    "jobTitle": "Head of Partnerships & Communications",
+    "worksFor": { "@type": "Organization", "name": "IntegratR", "url": "https://integratr.tech" },
+    "sameAs": "https://www.linkedin.com/in/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "IntegratR",
+    "url": "https://integratr.tech",
+    "logo": { "@type": "ImageObject", "url": "https://integratr.tech/wp-content/uploads/2025/09/Logo-IntegratR.svg" }
+  },
+  "keywords": ["homologatie", "zero-emissie voertuigen", "OEM", "typegoedkeuring", "EMC-testing", "WVTA", "IntegratR"],
+  "mentions": {
+    "@type": "Person",
+    "name": "Lars Kool",
+    "jobTitle": "CTO",
+    "worksFor": { "@type": "Organization", "name": "Urban Mobility Systems" }
+  }
+}
+</script>
+
+<script>
+// Progress bar + scroll top
+const bar = document.getElementById('progress-bar');
+const top = document.getElementById('scroll-top');
+
+window.addEventListener('scroll', () => {
+  const d = document.documentElement;
+  const pct = (d.scrollTop / (d.scrollHeight - d.clientHeight)) * 100;
+  bar.style.width = Math.min(pct, 100) + '%';
+  top.classList.toggle('show', d.scrollTop > 500);
+});
+
+// Active TOC
+const headings = document.querySelectorAll('.prose h2[id], .prose h3[id]');
+const links = document.querySelectorAll('.toc-list a');
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(l => l.classList.remove('active'));
+      const a = document.querySelector(`.toc-list a[href="#${e.target.id}"]`);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: `-80px 0px -65% 0px` });
+
+headings.forEach(h => obs.observe(h));
+</script>
+
+</body>
+</html>
